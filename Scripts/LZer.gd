@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var velocity = Vector2(0, 0)
+var damage = 5
 const SPEED = 180
 const JUMPFORCE = -550
 const GRAVITY = 35
@@ -32,3 +33,7 @@ func _physics_process(delta):
 
 func _on_FallZone_body_entered(body):
 	get_tree().reload_current_scene()
+	
+func multiply_damage(modifier):
+	damage *= modifier
+	print(damage)

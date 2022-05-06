@@ -68,6 +68,12 @@ position = Vector2( 58, 75 )
 shape = SubResource( 3 )
 
 [node name="2xDamage" parent="." instance=ExtResource( 4 )]
-position = Vector2( 568, -3 )
+position = Vector2( 439, 88 )
+
+[node name="2xDamage2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 382, 86 )
+
+[node name="2xDamage3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 375, 153 )
 
 [connection signal="body_entered" from="FallZone" to="LZer" method="_on_FallZone_body_entered"]
