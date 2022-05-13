@@ -6,6 +6,8 @@ const SPEED = 180
 const JUMPFORCE = -550
 const GRAVITY = 35
 
+signal dmg_power_up_collected
+
 func _physics_process(delta):
 	if (Input.is_action_pressed("right")):
 		velocity.x = SPEED
@@ -34,6 +36,5 @@ func _physics_process(delta):
 func _on_FallZone_body_entered(body):
 	get_tree().reload_current_scene()
 	
-func multiply_damage(modifier):
-	damage *= modifier
-	print(damage)
+func get_damage():
+	return (PowerUps.dmgPowerUps * damage) if (PowerUps.dmgPowerUps) else damage

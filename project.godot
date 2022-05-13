@@ -14,6 +14,10 @@ config/name="Born4Lazers"
 run/main_scene="res://Level1.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PowerUps="*res://Scripts/Global/PowerUps.gd"
+
 [input]
 
 right={
