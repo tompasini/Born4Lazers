@@ -21,6 +21,8 @@ animations = [ {
 } ]
 
 [node name="RedBat" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 35
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

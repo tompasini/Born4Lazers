@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://RedTileset1.tres" type="TileSet" id=1]
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Fonts/PermanentMarker-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://HUD.gd" type="Script" id=7]
 [ext_resource path="res://RedBat.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Eyebes.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 8 )
@@ -36,6 +37,8 @@ format = 1
 tile_data = PoolIntArray( 458774, 3, 0, 458775, 3, 0, 458776, 3, 0, 458777, 3, 0, 458778, 3, 0, 458779, 3, 0, 458780, 3, 0, 524310, -1610612731, 0, 524311, -1610612731, 0, 524312, -1610612731, 0, 524313, -1610612731, 0, 524314, -1610612731, 0, 524315, -1610612731, 0, 524316, -1610612731, 0, 589846, -1610612731, 0, 589847, -1610612731, 0, 589848, -1610612731, 0, 589849, -1610612731, 0, 589850, -1610612731, 0, 589851, -1610612731, 0, 589852, -1610612731, 0, 655382, -1610612731, 0, 655383, -1610612731, 0, 655384, -1610612731, 0, 655385, -1610612731, 0, 655386, -1610612731, 0, 655387, -1610612731, 0, 655388, -1610612731, 0, 720918, 3, 0, 720919, 3, 0, 720920, 3, 0, 720921, -1610612731, 0, 720922, -1610612731, 0, 720923, -1610612731, 0, 720924, -1610612731, 0, 786454, -1610612731, 0, 786455, -1610612731, 0, 786456, -1610612731, 0, 786457, -1610612731, 0, 786458, -1610612731, 0, 786459, -1610612731, 0, 786460, -1610612731, 0, 851990, -1610612731, 0, 851991, -1610612731, 0, 851992, -1610612731, 0, 851993, -1610612731, 0, 851994, -1610612731, 0, 851995, -1610612731, 0, 851996, -1610612731, 0 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TilesOneWay"]
+collision_layer = 2
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TilesOneWay/StaticBody2D"]
 position = Vector2( 376, 184 )
@@ -122,10 +125,20 @@ custom_colors/font_color = Color( 0.980392, 0.490196, 0.152941, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "##"
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Bats" type="Node2D" parent="."]
 
-[node name="RedBat" parent="Enemies" instance=ExtResource( 8 )]
+[node name="RedBat" parent="Bats" instance=ExtResource( 8 )]
 position = Vector2( 216, 185 )
+
+[node name="Eyebes" type="Node2D" parent="."]
+
+[node name="Eyebes" parent="Eyebes" instance=ExtResource( 9 )]
+position = Vector2( 158, 181 )
+
+[node name="Eyebes2" parent="Eyebes" instance=ExtResource( 9 )]
+position = Vector2( 182, 176 )
+direction = 1
+detects_cliffs = false
 
 [connection signal="dmg_power_up_collected" from="LZer" to="HUD" method="_on_LZer_dmg_power_up_collected"]
 [connection signal="body_entered" from="FallZone" to="LZer" method="_on_FallZone_body_entered"]
