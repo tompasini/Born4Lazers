@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Eyebes.png-b679a2bcf8e1ffe1a6c6ebea36cf65e4.stex"
+path="res://.import/Eyebes.png-76f37a05fdfd19d221598ff69192ab09.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/Eyebes.png"
-dest_files=[ "res://.import/Eyebes.png-b679a2bcf8e1ffe1a6c6ebea36cf65e4.stex" ]
+source_file="res://Assets/Enemies/Eyebes/Eyebes.png"
+dest_files=[ "res://.import/Eyebes.png-76f37a05fdfd19d221598ff69192ab09.stex" ]
 
 [params]
 

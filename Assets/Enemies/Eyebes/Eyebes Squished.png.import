@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Eyebes Squished.png-2ebe69e1cfc7a61b72494f57cee6bd8a.stex"
+path="res://.import/Eyebes Squished.png-348d6d907f55823e0dee216683bdb047.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/Eyebes Squished.png"
-dest_files=[ "res://.import/Eyebes Squished.png-2ebe69e1cfc7a61b72494f57cee6bd8a.stex" ]
+source_file="res://Assets/Enemies/Eyebes/Eyebes Squished.png"
+dest_files=[ "res://.import/Eyebes Squished.png-348d6d907f55823e0dee216683bdb047.stex" ]
 
 [params]
 
