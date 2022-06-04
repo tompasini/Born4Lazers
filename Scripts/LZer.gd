@@ -38,3 +38,24 @@ func _on_FallZone_body_entered(body):
 	
 func get_damage():
 	return (PowerUps.dmgPowerUps * damage) if (PowerUps.dmgPowerUps) else damage
+
+func bounce():
+	velocity.y = JUMPFORCE * 0.5
+
+
+func hurt(enemy_pos_x):
+	set_modulate(Color(1, 1, 1, 0.1))
+	velocity.y = JUMPFORCE * 0.5
+	
+	if(position.x < enemy_pos_x):
+		velocity.x = -800
+	elif (position.x > enemy_pos_x):
+		velocity.x = 800
+	Input.action_release('left')
+	Input.action_release('right')	
+	
+	$Timer.start()
+
+
+func _on_Timer_timeout():
+	get_tree().reload_current_scene()
