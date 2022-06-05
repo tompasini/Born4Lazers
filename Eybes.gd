@@ -39,7 +39,7 @@ func _on_TopChecker_body_entered(body):
 		body.bounce()
 
 func _on_Sides_body_entered(body):
-	body.hurt(position.x)
+	body.hurt()
 
 func _on_Timer_timeout():
 	queue_free()
