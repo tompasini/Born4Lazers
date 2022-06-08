@@ -121,10 +121,10 @@ position = Vector2( 216, 185 )
 [node name="Eyebes" type="Node2D" parent="."]
 
 [node name="Eyebes" parent="Eyebes" instance=ExtResource( 9 )]
-position = Vector2( 158, 181 )
+position = Vector2( 144, 207 )
 
 [node name="Eyebes2" parent="Eyebes" instance=ExtResource( 9 )]
-position = Vector2( 182, 176 )
+position = Vector2( 253, 207 )
 direction = 1
 detects_cliffs = false
 

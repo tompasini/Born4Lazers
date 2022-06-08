@@ -4,6 +4,7 @@ var velocity = Vector2()
 export var direction = -1
 export var detects_cliffs = true
 var speed = 50
+var life = 10
 
 func _ready():
 	if(direction == 1):
@@ -39,7 +40,16 @@ func _on_TopChecker_body_entered(body):
 		body.bounce()
 
 func _on_Sides_body_entered(body):
-	body.hurt()
+	if(body.name == 'LZer'):
+		body.hurt()
+	elif(body.name == 'Laser'):
+		$AnimatedSprite.play('hit')				
+		body.queue_free()
+		life -= GlobalVariables.laser_damage
+		if(!life):
+			$AnimatedSprite.play('fall')
+			speed = 0		
+			$Timer.start()
 
 func _on_Timer_timeout():
 	queue_free()

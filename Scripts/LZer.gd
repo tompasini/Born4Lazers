@@ -6,6 +6,7 @@ var alive = true
 const SPEED = 180
 const JUMPFORCE = -550
 const GRAVITY = 35
+const LASER = preload("res://Laser.tscn")
 
 signal dmg_power_up_collected
 
@@ -23,7 +24,10 @@ func _physics_process(delta):
 			$AnimatedSprite.play('idle')	
 		
 		if not is_on_floor():
-			$AnimatedSprite.play('jump')	
+			$AnimatedSprite.play('jump')
+			
+		if(Input.is_action_just_pressed("shoot")):
+			shoot()
 		
 		velocity.y += GRAVITY
 
@@ -39,7 +43,7 @@ func _on_FallZone_body_entered(body):
 	get_tree().reload_current_scene()
 	
 func get_damage():
-	return (PowerUps.dmgPowerUps * damage) if (PowerUps.dmgPowerUps) else damage
+	return (GlobalVariables.dmgPowerUps * damage) if (GlobalVariables.dmgPowerUps) else damage
 
 func bounce():
 	velocity.y = JUMPFORCE * 0.5
@@ -50,6 +54,14 @@ func hurt():
 	Input.action_release('left')
 	Input.action_release('right')
 	$AnimatedSprite.play('dead')
+	
+func shoot():
+	var l = LASER.instance()
+	if($AnimatedSprite.flip_h):
+		l.direction = -1
+	get_parent().add_child(l)
+	l.position.y = position.y - 7
+	l.position.x = position.x + 18
 
 func _on_Timer_timeout():
 	get_tree().reload_current_scene()
