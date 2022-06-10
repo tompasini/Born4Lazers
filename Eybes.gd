@@ -30,12 +30,7 @@ func _on_TopChecker_body_entered(body):
 	if(body.name == 'LZer'):
 		$AnimatedSprite.play('squished')
 		speed = 0
-		set_collision_layer_bit(4, false)
-		set_collision_mask_bit(0, false)
-		$TopChecker.set_collision_layer_bit(4, false)
-		$TopChecker.set_collision_mask_bit(0, false)
-		$Sides.set_collision_layer_bit(4, false)
-		$Sides.set_collision_mask_bit(0, false)
+		remove_collisions()
 		$Timer.start()
 		body.bounce()
 
@@ -43,14 +38,29 @@ func _on_Sides_body_entered(body):
 	if(body.name == 'LZer'):
 		body.hurt()
 	elif(body.name == 'Laser'):
-		$AnimatedSprite.play('hit')				
-		body.queue_free()
-		life -= GlobalVariables.laser_damage
+		if(life):
+			$AnimatedSprite.play('hit')				
+			body.queue_free()
+			life -= GlobalVariables.laser_damage
 		if(!life):
-			$AnimatedSprite.play('fall')
+			remove_collisions()	
+			$AnimatedSprite.play('fall')			
 			speed = 0		
 			$Timer.start()
 
 func _on_Timer_timeout():
 	queue_free()
 	
+
+
+func _on_AnimatedSprite_animation_finished():
+	if($AnimatedSprite.animation == 'hit' && life):
+		$AnimatedSprite.play('walk')
+		
+func remove_collisions():
+	set_collision_layer_bit(4, false)
+	set_collision_mask_bit(0, false)
+	$TopChecker.set_collision_layer_bit(4, false)
+	$TopChecker.set_collision_mask_bit(0, false)
+	$Sides.set_collision_layer_bit(4, false)
+	$Sides.set_collision_mask_bit(0, false)

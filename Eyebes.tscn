@@ -14,9 +14,9 @@ animations = [ {
 "name": "squished",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "fall",
+"name": "hit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ), ExtResource( 4 ) ],
@@ -24,9 +24,9 @@ animations = [ {
 "name": "walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "hit",
+"name": "fall",
 "speed": 5.0
 } ]
 
@@ -99,6 +99,7 @@ shape = SubResource( 3 )
 wait_time = 0.5
 one_shot = true
 
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Sides" to="." method="_on_Sides_body_entered"]
 [connection signal="body_entered" from="TopChecker" to="." method="_on_TopChecker_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
