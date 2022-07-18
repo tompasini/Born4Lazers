@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/L Zer/Lzer.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/LZer.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Assets/L Zer/Lzer Splits.png" type="Texture" id=6]
 [ext_resource path="res://Assets/L Zer/Lzer Dead.png" type="Texture" id=7]
 [ext_resource path="res://Assets/L Zer/Lzer Hit.png" type="Texture" id=8]
+[ext_resource path="res://Assets/L Zer/Lzer Walk 1.png" type="Texture" id=9]
+[ext_resource path="res://Assets/L Zer/Lzer Walk 2.png" type="Texture" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -21,14 +23,19 @@ animations = [ {
 "name": "run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "jump",
 "speed": 5.0
 } ]
 
@@ -41,7 +48,7 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "idle"
+animation = "walk"
 speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

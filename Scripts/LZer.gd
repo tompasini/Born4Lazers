@@ -3,7 +3,9 @@ extends KinematicBody2D
 var velocity = Vector2(0, 0)
 var damage = 5
 var alive = true
-const SPEED = 180
+var direction = 1
+var speedMultiplier = 1
+const SPEED = 90
 const JUMPFORCE = -550
 const GRAVITY = 35
 const LASER = preload("res://Laser.tscn")
@@ -13,13 +15,21 @@ signal dmg_power_up_collected
 func _physics_process(delta):
 	if(alive):
 		if (Input.is_action_pressed("right")):
-			velocity.x = SPEED
-			$AnimatedSprite.flip_h = false		
-			$AnimatedSprite.play('run')
+			direction = 1
+			if(Input.is_action_pressed("run")):
+				speedMultiplier = 2
+			else:
+				speedMultiplier = 1
+			velocity.x = (SPEED * speedMultiplier)
+			$AnimatedSprite.flip_h = false
+			move()
 		elif(Input.is_action_pressed("left")):
-			velocity.x = -SPEED
+			direction = -1
+			if(Input.is_action_pressed("run")):
+				speedMultiplier = 2
+			velocity.x = (-SPEED * speedMultiplier)
 			$AnimatedSprite.flip_h = true
-			$AnimatedSprite.play('run')		
+			move()
 		else:
 			$AnimatedSprite.play('idle')	
 		
@@ -32,11 +42,16 @@ func _physics_process(delta):
 		velocity.y += GRAVITY
 
 		if(Input.is_action_just_pressed("jump") and is_on_floor()):
-			velocity.y = JUMPFORCE
+			if(speedMultiplier == 1):
+				velocity.y = JUMPFORCE
+			else:
+				velocity.y = -700
+				velocity.x += (700 * direction)
 
 		velocity = move_and_slide(velocity, Vector2.UP)
 		
-		velocity.x = lerp(velocity.x, 0, 0.2)
+		if(is_on_floor()):
+			velocity.x = lerp(velocity.x, 0, 0.2)
 
 
 func _on_FallZone_body_entered(body):
@@ -62,6 +77,12 @@ func shoot():
 	get_parent().add_child(l)
 	l.position.y = position.y - 7
 	l.position.x = position.x + 18
+	
+func move():
+	if(speedMultiplier == 1):
+		$AnimatedSprite.play("walk")
+	else:
+		$AnimatedSprite.play("run")
 
 func _on_Timer_timeout():
 	get_tree().reload_current_scene()
