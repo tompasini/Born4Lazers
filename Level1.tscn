@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://RedTileset1.tres" type="TileSet" id=1]
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://RedBat.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Eyebes.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Backgrounds/Red World/Background #1.png" type="Texture" id=10]
+[ext_resource path="res://LevelTimer.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 8 )
@@ -145,6 +146,12 @@ limit_top = -500
 limit_right = 3000
 limit_bottom = 600
 limit_smoothed = true
+
+[node name="StopWatch" parent="LZer/Camera2D" instance=ExtResource( 11 )]
+margin_left = -159.0
+margin_top = -143.0
+margin_right = -119.0
+margin_bottom = -129.0
 
 [connection signal="body_entered" from="FallZone" to="LZer" method="_on_FallZone_body_entered"]
 [connection signal="dmg_power_up_collected" from="LZer" to="HUD" method="_on_LZer_dmg_power_up_collected"]
