@@ -44,12 +44,14 @@ func _on_Sides_body_entered(body):
 			life -= GlobalVariables.laser_damage
 		if(!life):
 			remove_collisions()	
-			$AnimatedSprite.play('fall')			
+			$AnimatedSprite.play('fall')
 			speed = 0		
 			$Timer.start()
 
 func _on_Timer_timeout():
 	queue_free()
+	GlobalVariables.update_score((GlobalVariables.score + 100))
+	
 	
 
 
