@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://RedTileset1.tres" type="TileSet" id=1]
+[ext_resource path="res://Resources/Tilesets/RedTileset1.tres" type="TileSet" id=1]
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
-[ext_resource path="res://RedTilesetOneWay.tres" type="TileSet" id=3]
-[ext_resource path="res://ScoreDisplay.tscn" type="PackedScene" id=4]
-[ext_resource path="res://RedBat.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Eyebes.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Resources/Tilesets/RedTilesetOneWay.tres" type="TileSet" id=3]
+[ext_resource path="res://HUD/ScoreDisplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/RedBat.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/Eyebes.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Backgrounds/Red World/Background #1.png" type="Texture" id=10]
-[ext_resource path="res://LevelTimer.tscn" type="PackedScene" id=11]
+[ext_resource path="res://HUD/LevelTimer.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 8 )
