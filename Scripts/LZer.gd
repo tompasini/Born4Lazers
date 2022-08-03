@@ -94,8 +94,3 @@ func _on_Timer_timeout():
 func _on_AnimatedSprite_animation_finished():
 	if($AnimatedSprite.animation == 'dead'):
 		$Timer.start()
-
-
-func _on_RedSwitch_body_entered(body):
-	finished = true
-	get_parent().get_node("RedSwitch/AnimatedSprite").play("pressed")
