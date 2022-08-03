@@ -3,6 +3,7 @@ extends KinematicBody2D
 var velocity = Vector2(0, 0)
 var damage = 5
 var alive = true
+var finished = false
 var direction = 1
 var speedMultiplier = 1
 const SPEED = 90
@@ -12,8 +13,10 @@ const LASER = preload("res://Laser.tscn")
 
 signal dmg_power_up_collected
 
+signal finished_level
+
 func _physics_process(delta):
-	if(alive):
+	if(alive && !finished):
 		if (Input.is_action_pressed("right")):
 			direction = 1
 			if(Input.is_action_pressed("run")):
@@ -91,3 +94,8 @@ func _on_Timer_timeout():
 func _on_AnimatedSprite_animation_finished():
 	if($AnimatedSprite.animation == 'dead'):
 		$Timer.start()
+
+
+func _on_RedSwitch_body_entered(body):
+	finished = true
+	get_parent().get_node("RedSwitch/AnimatedSprite").play("pressed")

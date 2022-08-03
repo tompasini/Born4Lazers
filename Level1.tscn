@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Resources/Tilesets/RedTileset1.tres" type="TileSet" id=1]
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Tilesets/RedTilesetOneWay.tres" type="TileSet" id=3]
 [ext_resource path="res://HUD/ScoreDisplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Interactables/Switches/RedSwitch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/RedBat.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemies/Eyebes.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Backgrounds/Red World/Background #1.png" type="Texture" id=10]
@@ -81,6 +82,9 @@ position = Vector2( 253, 207 )
 direction = 1
 detects_cliffs = false
 
+[node name="RedSwitch" parent="." instance=ExtResource( 5 )]
+position = Vector2( 306, 193 )
+
 [node name="LZer" parent="." instance=ExtResource( 2 )]
 position = Vector2( 60, 218 )
 
@@ -106,3 +110,4 @@ margin_right = -134.0
 margin_bottom = -125.0
 
 [connection signal="body_entered" from="FallZone" to="LZer" method="_on_FallZone_body_entered"]
+[connection signal="body_entered" from="RedSwitch" to="LZer" method="_on_RedSwitch_body_entered"]

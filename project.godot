@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalVariables="*res://Scripts/Global/global_variables.gd"
+SceneManager="*res://Scripts/Global/scene_manager.gd"
 
 [input]
 
@@ -54,6 +55,7 @@ run={
 2d_physics/layer_4="item"
 2d_physics/layer_5="enemy"
 2d_physics/layer_6="laser"
+2d_physics/layer_7="switch"
 
 [physics]
 
