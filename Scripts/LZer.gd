@@ -92,5 +92,7 @@ func _on_Timer_timeout():
 
 
 func _on_AnimatedSprite_animation_finished():
-	if($AnimatedSprite.animation == 'dead'):
+	if($AnimatedSprite.animation == "dead"):
 		$Timer.start()
+	elif($AnimatedSprite.animation == "finished"):
+		SceneManager.next_level(GlobalVariables.currentWorld)

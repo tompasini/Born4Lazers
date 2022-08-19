@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Backgrounds/Red World/Background #1.png" type="Texture" id=2]
-[ext_resource path="res://LZer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/Eyebes.tscn" type="PackedScene" id=1]
+[ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://HUD/ScoreDisplay.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/RedBat.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Interactables/Switches/RedSwitch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://HUD/LevelTimer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Enemies/Eyebes.tscn" type="PackedScene" id=7]
-[ext_resource path="res://HUD/ScoreDisplay.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Level.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Backgrounds/Red World/Background #1.png" type="Texture" id=8]
 [ext_resource path="res://Resources/Tilesets/RedTileset1.tres" type="TileSet" id=9]
 [ext_resource path="res://Resources/Tilesets/RedTilesetOneWay.tres" type="TileSet" id=10]
 
@@ -20,13 +20,13 @@ extents = Vector2( 56, 8 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 225, 56 )
 
-[node name="Level1" type="Node2D"]
-script = ExtResource( 1 )
+[node name="Level" type="Node2D"]
+script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 443.5, 122.5 )
 scale = Vector2( 2.38594, 1.51042 )
-texture = ExtResource( 2 )
+texture = ExtResource( 8 )
 
 [node name="TilesOneWay" type="TileMap" parent="."]
 tile_set = ExtResource( 10 )
@@ -76,10 +76,10 @@ position = Vector2( 216, 185 )
 
 [node name="Eyebes" type="Node2D" parent="."]
 
-[node name="Eyebes" parent="Eyebes" instance=ExtResource( 7 )]
+[node name="Eyebes" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 144, 207 )
 
-[node name="Eyebes2" parent="Eyebes" instance=ExtResource( 7 )]
+[node name="Eyebes2" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 253, 207 )
 direction = 1
 detects_cliffs = false
@@ -87,7 +87,7 @@ detects_cliffs = false
 [node name="Switch" parent="." instance=ExtResource( 5 )]
 position = Vector2( 306, 193 )
 
-[node name="LZer" parent="." instance=ExtResource( 3 )]
+[node name="LZer" parent="." instance=ExtResource( 2 )]
 position = Vector2( 60, 218 )
 
 [node name="Camera2D" type="Camera2D" parent="LZer"]
@@ -105,7 +105,7 @@ margin_top = -139.0
 margin_right = -204.0
 margin_bottom = -125.0
 
-[node name="ScoreDisplay" parent="LZer/Camera2D" instance=ExtResource( 8 )]
+[node name="ScoreDisplay" parent="LZer/Camera2D" instance=ExtResource( 3 )]
 margin_left = -174.0
 margin_top = -139.0
 margin_right = -134.0
