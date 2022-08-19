@@ -11,9 +11,9 @@ func _ready():
 func goto_scene(path, level_change):
 	call_deferred("_deferred_goto_scene", path)
 	
-func next_level():
+func next_level(world):
 	current_level += 1
-	call_deferred("_deferred_goto_scene", "res://levels/Level" + str(current_level) + ".tscn")
+	call_deferred("_deferred_goto_scene", "res://levels/" + world + "Level" + str(current_level) + ".tscn")
 
 func _deferred_goto_scene(path):
 	get_tree().change_scene(path)
