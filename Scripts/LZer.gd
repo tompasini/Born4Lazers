@@ -5,6 +5,7 @@ var damage = 5
 var alive = true
 var finished = false
 var direction = 1
+var oldDirection = 1
 var speedMultiplier = 1
 const SPEED = 90
 const JUMPFORCE = -550
@@ -47,9 +48,14 @@ func _physics_process(delta):
 		else:
 			if(velocity.y < 0):
 				velocity.y = 0
+			$AnimatedSprite.flip_h = false
+			if($LeftSide.is_colliding()):
+				$AnimatedSprite.play("left_wall")
+			elif($RightSide.is_colliding()):
+				$AnimatedSprite.play("right_wall")
 			velocity.y += 5
 		
-		if((Input.is_action_just_pressed("jump") && is_on_floor()) || (Input.is_action_just_pressed("jump") && is_on_wall())):
+		if((Input.is_action_just_pressed("jump") && is_on_floor()) || valid_wall_jump()):
 			jump()
 
 		velocity = move_and_slide(velocity, Vector2.UP)
@@ -57,6 +63,9 @@ func _physics_process(delta):
 		if(is_on_floor()):
 			velocity.x = lerp(velocity.x, 0, 0.2)
 
+
+func valid_wall_jump():
+	return (Input.is_action_just_pressed("jump") && ((Input.is_action_pressed("right") && $LeftSide.is_colliding()) || (Input.is_action_pressed("left") && $RightSide.is_colliding())))
 
 func _on_FallZone_body_entered(body):
 	get_tree().reload_current_scene()
@@ -94,6 +103,7 @@ func jump():
 	else:
 			velocity.y = -700
 			velocity.x += (700 * direction)
+
 
 func _on_Timer_timeout():
 	get_tree().reload_current_scene()

@@ -13,7 +13,6 @@ func _ready():
 	$FloorChecker.enabled = detects_cliffs	
 
 func  _physics_process(delta):
-	
 	if(is_on_wall() || (!$FloorChecker.is_colliding() && detects_cliffs && is_on_floor())):
 		direction *= -1
 		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
