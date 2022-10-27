@@ -21,7 +21,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 87.0057
+radius = 141.032
 
 [node name="RedBat" type="KinematicBody2D"]
 collision_layer = 16
