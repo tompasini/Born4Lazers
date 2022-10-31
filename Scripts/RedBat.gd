@@ -4,6 +4,8 @@ var velocity = Vector2()
 
 var player_position = Vector2(0, 0)
 
+var life = 15
+
 enum STATES {UP, DOWN, IDLE, ATTACK}
 
 var _state : int = STATES.UP
@@ -44,3 +46,23 @@ func attack(delta):
 func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	_state = STATES.ATTACK
 	player_position = Vector2(body.position.x, body.position.y)
+
+
+func _on_Body_body_entered(body):
+	if(body.name == 'LZer'):
+		body.hurt()
+	elif(body.name == 'Laser'):
+		if(life):
+			$AnimatedSprite.play('hit')				
+			body.queue_free()
+			life -= GlobalVariables.laser_damage
+		if(!life):
+			remove_collisions()	
+			queue_free()
+			GlobalVariables.update_score((GlobalVariables.score + 150))
+
+func remove_collisions():
+	set_collision_layer_bit(4, false)
+	set_collision_mask_bit(0, false)
+	$Body.set_collision_mask_bit(5, false)
+	$Body.set_collision_mask_bit(0, false)
