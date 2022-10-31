@@ -37,7 +37,7 @@ func _physics_process(delta):
 		else:
 			$AnimatedSprite.play('idle')	
 		
-		if(!is_on_floor()):
+		if(!is_on_floor() && !is_on_wall()):
 			$AnimatedSprite.play('jump')
 			
 		if(Input.is_action_just_pressed("shoot")):

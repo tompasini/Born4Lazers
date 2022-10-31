@@ -4,6 +4,8 @@ var velocity = Vector2()
 
 var player_position = Vector2(0, 0)
 
+var attack_speed = 175
+
 var life = 15
 
 enum STATES {UP, DOWN, IDLE, ATTACK}
@@ -41,7 +43,7 @@ func bob():
 		velocity.y += 0.15
 
 func attack(delta):
-	position = position.move_toward(player_position, delta * 150)
+	position = position.move_toward(player_position, delta * attack_speed)
 
 func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	_state = STATES.ATTACK
