@@ -58,7 +58,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 5, 6 )
+extents = Vector2( 5.125, 6 )
 
 [node name="LZer" type="KinematicBody2D" groups=["player"]]
 collision_mask = 30
@@ -70,7 +70,6 @@ animation = "idle"
 speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, 1 )
 shape = SubResource( 2 )
 
@@ -78,12 +77,14 @@ shape = SubResource( 2 )
 wait_time = 3.0
 
 [node name="LeftSide" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( -2, 0 )
 enabled = true
 cast_to = Vector2( -8, 0 )
 collision_mask = 3
 
 [node name="RightSide" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 2, 0 )
 enabled = true
 cast_to = Vector2( 8, 0 )
