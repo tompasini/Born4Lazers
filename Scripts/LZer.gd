@@ -45,17 +45,17 @@ func _physics_process(delta):
 		
 		if(!is_on_wall() && !sidesColliding()):
 			velocity.y += GRAVITY
-		else:
-			if(velocity.y < 0):
-				velocity.y = 0
+		elif(!bottomOrTopColliding()):
 			$AnimatedSprite.flip_h = false
 			if($LeftSide.is_colliding()):
 				$AnimatedSprite.play("left_wall")
 			elif($RightSide.is_colliding()):
 				$AnimatedSprite.play("right_wall")
-			velocity.y += 5
+			if(velocity.y < 0):
+				velocity.y = 0
+				velocity.y += 10
 		
-		if((Input.is_action_just_pressed("jump") && (is_on_floor()) || valid_wall_jump())):
+		if(((Input.is_action_just_pressed("jump") && (is_on_floor() || bottomColliding())) || valid_wall_jump())):
 			jump()
 
 		velocity = move_and_slide(velocity, Vector2.UP)
@@ -95,18 +95,26 @@ func move():
 		$AnimatedSprite.play("run")
 
 func jump():
-	if(speedMultiplier == 1 && !is_on_wall() && !sidesColliding()):
+	if(speedMultiplier == 1 && bottomColliding()):
 		velocity.y = JUMPFORCE
-	elif(sidesColliding()):
+	elif(sidesColliding() && !bottomOrTopColliding()):
 		velocity.y = -600
 		velocity.x += (600 * direction)
 	else:
-			velocity.y = -700
-			velocity.x += (700 * direction)
+		velocity.y = -700
+		velocity.x += (700 * direction)
 			
 func sidesColliding():
 	return $LeftSide.is_colliding() || $RightSide.is_colliding()
+	
+func topColliding():
+	return $Top.is_colliding()
 
+func bottomColliding():
+	return $Bottom.is_colliding()
+	
+func bottomOrTopColliding():
+	return topColliding() || bottomColliding()
 
 func _on_Timer_timeout():
 	get_tree().reload_current_scene()
