@@ -5,11 +5,13 @@
 [ext_resource path="res://HUD/ScoreDisplay.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/RedBat.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Interactables/Switches/RedSwitch.tscn" type="PackedScene" id=5]
-[ext_resource path="res://HUD/LevelTimer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Backgrounds/Red World/Background Evening.png" type="Texture" id=8]
 [ext_resource path="res://Resources/Tilesets/RedTileset1.tres" type="TileSet" id=9]
 [ext_resource path="res://Resources/Tilesets/RedTilesetOneWay.tres" type="TileSet" id=10]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8.5, 7.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 225, 56 )
@@ -29,10 +31,16 @@ cell_quadrant_size = 17
 collision_layer = 2
 collision_mask = 17
 format = 1
+tile_data = PoolIntArray( 720900, 3, 0 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TilesOneWay"]
 collision_layer = 2
 collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TilesOneWay/StaticBody2D"]
+position = Vector2( 71.5, 183.5 )
+shape = SubResource( 4 )
+one_way_collision = true
 
 [node name="TilesSolid" type="TileMap" parent="."]
 tile_set = ExtResource( 9 )
@@ -72,7 +80,7 @@ detects_cliffs = false
 position = Vector2( 713, 192 )
 
 [node name="LZer" parent="." instance=ExtResource( 2 )]
-position = Vector2( 84, 216 )
+position = Vector2( 75, 218 )
 
 [node name="Camera2D" type="Camera2D" parent="LZer"]
 current = true
@@ -82,12 +90,6 @@ limit_top = -500
 limit_right = 3000
 limit_bottom = 600
 limit_smoothed = true
-
-[node name="StopWatch" parent="LZer/Camera2D" instance=ExtResource( 6 )]
-margin_left = -244.0
-margin_top = -139.0
-margin_right = -204.0
-margin_bottom = -125.0
 
 [node name="ScoreDisplay" parent="LZer/Camera2D" instance=ExtResource( 3 )]
 margin_left = -174.0

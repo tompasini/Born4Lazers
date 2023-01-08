@@ -14,8 +14,21 @@ const LASER = preload("res://Laser.tscn")
 
 signal finished_level
 
+enum STATES {ON_GROUND, JUMPING, ON_WALL_IN_AIR, ON_GROUND_TOUCHING_WALL}
+
+var _state = STATES.ON_GROUND
+
 func _physics_process(delta):
 	if(alive && !finished):
+		if(is_on_floor() && bottomColliding() && !sidesColliding() && !is_on_wall()):
+			_state = STATES.ON_GROUND
+		if(is_on_floor() && bottomColliding() && sidesColliding() && is_on_wall()):
+			_state = STATES.ON_GROUND_TOUCHING_WALL
+		if(!bottomColliding() && sidesColliding() && is_on_wall()):
+			_state = STATES.ON_WALL_IN_AIR
+		if(!is_on_floor() && !is_on_wall()):
+			_state = STATES.JUMPING
+			
 		if (Input.is_action_pressed("right")):
 			direction = 1
 			if(bottomColliding() || !is_on_wall()):
@@ -37,15 +50,15 @@ func _physics_process(delta):
 		else:
 			$AnimatedSprite.play('idle')	
 		
-		if(!is_on_floor() && !is_on_wall()):
+		if(_state == STATES.JUMPING):
 			$AnimatedSprite.play('jump')
 			
 		if(Input.is_action_just_pressed("shoot")):
 			shoot()
 		
-		if(!is_on_wall() && !sidesColliding()):
+		if(_state != STATES.ON_WALL_IN_AIR):
 			velocity.y += GRAVITY
-		elif(!bottomOrTopColliding()):
+		else:
 			$AnimatedSprite.flip_h = false
 			if($LeftSide.is_colliding()):
 				$AnimatedSprite.play("left_wall")
@@ -55,12 +68,12 @@ func _physics_process(delta):
 				velocity.y = 0
 				velocity.y += 10
 		
-		if(((Input.is_action_just_pressed("jump") && (is_on_floor() || bottomColliding())) || valid_wall_jump())):
+		if(((Input.is_action_just_pressed("jump") && (_state != STATES.JUMPING && _state != STATES.ON_WALL_IN_AIR)) || valid_wall_jump())):
 			jump()
 
 		velocity = move_and_slide(velocity, Vector2.UP)
 		
-		if(is_on_floor()):
+		if(_state == STATES.ON_GROUND || _state == STATES.ON_GROUND_TOUCHING_WALL):
 			velocity.x = lerp(velocity.x, 0, 0.2)
 
 
