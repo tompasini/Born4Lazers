@@ -26,8 +26,10 @@ func _physics_process(delta):
 			_state = STATES.ON_GROUND_TOUCHING_WALL
 		if(!bottomColliding() && sidesColliding() && is_on_wall()):
 			_state = STATES.ON_WALL_IN_AIR
-		if(!is_on_floor() && !is_on_wall()):
+		if(!is_on_floor() && (!is_on_wall() && !sidesColliding())):
 			_state = STATES.JUMPING
+			
+		print(_state)
 			
 		if (Input.is_action_pressed("right")):
 			direction = 1
@@ -64,9 +66,8 @@ func _physics_process(delta):
 				$AnimatedSprite.play("left_wall")
 			elif($RightSide.is_colliding()):
 				$AnimatedSprite.play("right_wall")
-			if(velocity.y < 0):
-				velocity.y = 0
-				velocity.y += 10
+			velocity.y = 0
+			velocity.y += 10
 		
 		if(((Input.is_action_just_pressed("jump") && (_state != STATES.JUMPING && _state != STATES.ON_WALL_IN_AIR)) || valid_wall_jump())):
 			jump()
@@ -91,6 +92,7 @@ func hurt():
 	alive = false
 	Input.action_release('left')
 	Input.action_release('right')
+	remove_collisions()
 	$AnimatedSprite.play('dead')
 	
 func shoot():
@@ -138,3 +140,11 @@ func _on_AnimatedSprite_animation_finished():
 		$Timer.start()
 	elif($AnimatedSprite.animation == "finished"):
 		SceneManager.next_level(GlobalVariables.currentWorld)
+
+func remove_collisions():
+	set_collision_layer_bit(0, false)
+	set_collision_mask_bit(4, false)
+	$LeftSide.enabled = false
+	$RightSide.enabled = false
+	$Bottom.enabled = false
+	$Top.enabled = false
