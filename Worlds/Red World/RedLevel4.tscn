@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
-[ext_resource path="res://HUD/ScoreDisplay.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/RedBat.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Interactables/Switches/RedSwitch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=7]
@@ -282,12 +281,6 @@ limit_top = -8000
 limit_right = 8000
 limit_bottom = 8000
 limit_smoothed = true
-
-[node name="ScoreDisplay" parent="LZer/Camera2D" instance=ExtResource( 3 )]
-margin_left = -174.0
-margin_top = -139.0
-margin_right = -134.0
-margin_bottom = -125.0
 
 [node name="Node2D" type="Node2D" parent="."]
 

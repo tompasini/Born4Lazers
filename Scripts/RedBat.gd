@@ -61,8 +61,7 @@ func _on_Body_body_entered(body):
 		if(!life):
 			remove_collisions()	
 			queue_free()
-			GlobalVariables.update_score((GlobalVariables.score + 150))
-
+			
 func remove_collisions():
 	set_collision_layer_bit(4, false)
 	set_collision_mask_bit(0, false)
