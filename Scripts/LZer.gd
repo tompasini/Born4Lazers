@@ -29,8 +29,6 @@ func _physics_process(delta):
 		if(!is_on_floor() && (!is_on_wall() && !sidesColliding())):
 			_state = STATES.JUMPING
 			
-		print(_state)
-			
 		if (Input.is_action_pressed("right")):
 			direction = 1
 			if(bottomColliding() || !is_on_wall()):
