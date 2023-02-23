@@ -33,15 +33,18 @@ radius = 141.032
 extents = Vector2( 7, 7 )
 
 [node name="RedBat" type="KinematicBody2D"]
-collision_layer = 16
-collision_mask = 35
+collision_layer = 0
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_priority = 2
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+animation = "flap"
+frame = 1
 playing = true
 
 [node name="Timer" type="Timer" parent="."]
@@ -56,11 +59,13 @@ collision_layer = 0
 shape = SubResource( 3 )
 
 [node name="Body" type="Area2D" parent="."]
-collision_layer = 0
+process_priority = 1
+collision_layer = 16
 collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 shape = SubResource( 4 )
+one_way_collision_margin = 16.0
 
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_Area2D_body_shape_entered"]
 [connection signal="body_entered" from="Body" to="." method="_on_Body_body_entered"]

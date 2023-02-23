@@ -8,7 +8,7 @@ var attack_speed = 175
 
 var life = 15
 
-enum STATES {UP, DOWN, IDLE, ATTACK}
+enum STATES {UP, DOWN, IDLE, ATTACK, HIT}
 
 var _state : int = STATES.UP
 
@@ -16,6 +16,7 @@ func _ready():
 	pass
 
 func _physics_process(delta):
+	print(_state)
 	if(_state != STATES.ATTACK):
 		bob()
 		move_and_slide(velocity)
@@ -55,7 +56,7 @@ func _on_Body_body_entered(body):
 		body.hurt()
 	elif(body.name == 'Laser'):
 		if(life):
-			$AnimatedSprite.play('hit')				
+			$AnimatedSprite.play('hit')
 			body.queue_free()
 			life -= GlobalVariables.laser_damage
 		if(!life):
