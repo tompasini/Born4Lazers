@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/RedBat.tscn" type="PackedScene" id=4]
@@ -10,225 +10,6 @@
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 808, 70 )
-
-[sub_resource type="GDScript" id=4]
-script/source = "extends KinematicBody2D
-
-var velocity = Vector2()
-
-var player_position = Vector2(0, 0)
-
-var attack_speed = 175
-
-var life = 15
-
-enum STATES {UP, DOWN, IDLE, ATTACK}
-
-var _state : int = STATES.UP
-
-func _ready():
-	pass
-
-func _physics_process(delta):
-	if(_state != STATES.ATTACK):
-		bob()
-		move_and_slide(velocity)
-	else:
-		attack(delta)
-		
-	if(position == player_position):
-		_state = STATES.UP
-
-
-func bob():
-	if($Timer.is_stopped()):
-		if(_state == STATES.UP):
-			_state = STATES.DOWN
-		elif(_state == STATES.DOWN):
-			_state = STATES.UP
-		$Timer.start()
-	if(_state == STATES.UP):
-		if(velocity.y > 0):
-			velocity.y = lerp(velocity.y, 0, 1.0)
-		velocity.y -= 0.15
-	elif(_state == STATES.DOWN):
-		if(velocity.y < 0):
-			velocity.y = lerp(velocity.y, 0, 1.0)
-		velocity.y += 0.15
-
-func attack(delta):
-	position = position.move_toward(player_position, delta * attack_speed)
-
-func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	_state = STATES.ATTACK
-	player_position = Vector2(body.position.x, body.position.y)
-
-
-func _on_Body_body_entered(body):
-	if(body.name == 'LZer'):
-		body.hurt()
-	elif(body.name == 'Laser'):
-		if(life):
-			$AnimatedSprite.play('hit')				
-			body.queue_free()
-			life -= GlobalVariables.laser_damage
-		if(!life):
-			remove_collisions()	
-			queue_free()
-			GlobalVariables.update_score((GlobalVariables.score + 150))
-
-func remove_collisions():
-	set_collision_layer_bit(4, false)
-	set_collision_mask_bit(0, false)
-	$Body.set_collision_mask_bit(5, false)
-	$Body.set_collision_mask_bit(0, false)
-"
-
-[sub_resource type="GDScript" id=5]
-script/source = "extends KinematicBody2D
-
-var velocity = Vector2()
-
-var player_position = Vector2(0, 0)
-
-var attack_speed = 175
-
-var life = 15
-
-enum STATES {UP, DOWN, IDLE, ATTACK}
-
-var _state : int = STATES.UP
-
-func _ready():
-	pass
-
-func _physics_process(delta):
-	if(_state != STATES.ATTACK):
-		bob()
-		move_and_slide(velocity)
-	else:
-		attack(delta)
-		
-	if(position == player_position):
-		_state = STATES.UP
-
-
-func bob():
-	if($Timer.is_stopped()):
-		if(_state == STATES.UP):
-			_state = STATES.DOWN
-		elif(_state == STATES.DOWN):
-			_state = STATES.UP
-		$Timer.start()
-	if(_state == STATES.UP):
-		if(velocity.y > 0):
-			velocity.y = lerp(velocity.y, 0, 1.0)
-		velocity.y -= 0.15
-	elif(_state == STATES.DOWN):
-		if(velocity.y < 0):
-			velocity.y = lerp(velocity.y, 0, 1.0)
-		velocity.y += 0.15
-
-func attack(delta):
-	position = position.move_toward(player_position, delta * attack_speed)
-
-func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	_state = STATES.ATTACK
-	player_position = Vector2(body.position.x, body.position.y)
-
-
-func _on_Body_body_entered(body):
-	if(body.name == 'LZer'):
-		body.hurt()
-	elif(body.name == 'Laser'):
-		if(life):
-			$AnimatedSprite.play('hit')				
-			body.queue_free()
-			life -= GlobalVariables.laser_damage
-		if(!life):
-			remove_collisions()	
-			queue_free()
-			GlobalVariables.update_score((GlobalVariables.score + 150))
-
-func remove_collisions():
-	set_collision_layer_bit(4, false)
-	set_collision_mask_bit(0, false)
-	$Body.set_collision_mask_bit(5, false)
-	$Body.set_collision_mask_bit(0, false)
-"
-
-[sub_resource type="GDScript" id=6]
-script/source = "extends KinematicBody2D
-
-var velocity = Vector2()
-
-var player_position = Vector2(0, 0)
-
-var attack_speed = 175
-
-var life = 15
-
-enum STATES {UP, DOWN, IDLE, ATTACK}
-
-var _state : int = STATES.UP
-
-func _ready():
-	pass
-
-func _physics_process(delta):
-	if(_state != STATES.ATTACK):
-		bob()
-		move_and_slide(velocity)
-	else:
-		attack(delta)
-		
-	if(position == player_position):
-		_state = STATES.UP
-
-
-func bob():
-	if($Timer.is_stopped()):
-		if(_state == STATES.UP):
-			_state = STATES.DOWN
-		elif(_state == STATES.DOWN):
-			_state = STATES.UP
-		$Timer.start()
-	if(_state == STATES.UP):
-		if(velocity.y > 0):
-			velocity.y = lerp(velocity.y, 0, 1.0)
-		velocity.y -= 0.15
-	elif(_state == STATES.DOWN):
-		if(velocity.y < 0):
-			velocity.y = lerp(velocity.y, 0, 1.0)
-		velocity.y += 0.15
-
-func attack(delta):
-	position = position.move_toward(player_position, delta * attack_speed)
-
-func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	_state = STATES.ATTACK
-	player_position = Vector2(body.position.x, body.position.y)
-
-
-func _on_Body_body_entered(body):
-	if(body.name == 'LZer'):
-		body.hurt()
-	elif(body.name == 'Laser'):
-		if(life):
-			$AnimatedSprite.play('hit')				
-			body.queue_free()
-			life -= GlobalVariables.laser_damage
-		if(!life):
-			remove_collisions()	
-			queue_free()
-			GlobalVariables.update_score((GlobalVariables.score + 150))
-
-func remove_collisions():
-	set_collision_layer_bit(4, false)
-	set_collision_mask_bit(0, false)
-	$Body.set_collision_mask_bit(5, false)
-	$Body.set_collision_mask_bit(0, false)
-"
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 7 )
@@ -284,17 +65,14 @@ limit_smoothed = true
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="RedBat" parent="Node2D" instance=ExtResource( 4 )]
+[node name="RedBat4" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 205, -71 )
-script = SubResource( 4 )
 
 [node name="RedBat2" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 548, -71 )
-script = SubResource( 5 )
 
 [node name="RedBat3" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 372, -71 )
-script = SubResource( 6 )
 
 [connection signal="body_entered" from="FallZone" to="LZer" method="_on_FallZone_body_entered"]
 [connection signal="body_entered" from="Switch" to="." method="_on_Switch_body_entered"]
