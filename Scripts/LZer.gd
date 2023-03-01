@@ -66,8 +66,11 @@ func _physics_process(delta):
 				$AnimatedSprite.play("left_wall")
 			elif($RightSide.is_colliding()):
 				$AnimatedSprite.play("right_wall")
-			velocity.y = 0
-			velocity.y += 10
+			if(Input.is_action_pressed("slide_down")):
+				velocity.y = 180
+			else:
+				velocity.y = 0
+				velocity.y += 10
 		
 		if(((Input.is_action_just_pressed("jump") && (_state != STATES.JUMPING && _state != STATES.ON_WALL_IN_AIR)) || valid_wall_jump())):
 			jump()
@@ -75,8 +78,8 @@ func _physics_process(delta):
 		velocity = move_and_slide(velocity, Vector2.UP)
 		
 		if(_state == STATES.ON_GROUND || _state == STATES.ON_GROUND_TOUCHING_WALL):
-			velocity.x = lerp(velocity.x, 0, 0.2)
-
+			velocity.x = lerp(velocity.x, 0, 0.9)
+			
 
 func valid_wall_jump():
 	return (Input.is_action_just_pressed("jump") && ((Input.is_action_pressed("right") && $LeftSide.is_colliding()) || (Input.is_action_pressed("left") && $RightSide.is_colliding())))
@@ -114,7 +117,7 @@ func jump():
 		velocity.y = JUMPFORCE
 	elif(sidesColliding() && !bottomOrTopColliding()):
 		velocity.y = -600
-		velocity.x += (600 * direction)
+		velocity.x += (600 * direction)		
 	else:
 		velocity.y = -700
 		velocity.x += (700 * direction)

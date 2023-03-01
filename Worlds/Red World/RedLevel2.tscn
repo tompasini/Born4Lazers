@@ -58,7 +58,7 @@ detects_cliffs = false
 position = Vector2( 627, -510 )
 
 [node name="LZer" parent="." instance=ExtResource( 2 )]
-position = Vector2( 78, 215 )
+position = Vector2( 89, 216 )
 
 [node name="Camera2D" type="Camera2D" parent="LZer"]
 visible = false

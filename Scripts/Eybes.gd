@@ -43,8 +43,6 @@ func _on_Sides_body_entered(body):
 
 func _on_Timer_timeout():
 	queue_free()
-	
-
 
 func _on_AnimatedSprite_animation_finished():
 	if($AnimatedSprite.animation == 'hit' && life):
@@ -57,6 +55,7 @@ func remove_collisions():
 	$TopChecker.set_collision_mask_bit(0, false)
 	$Sides.set_collision_layer_bit(4, false)
 	$Sides.set_collision_mask_bit(0, false)
+
 
 func hit_by_laser(body):
 	if(life):
