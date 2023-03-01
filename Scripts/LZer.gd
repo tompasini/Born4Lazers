@@ -20,7 +20,7 @@ var _state = STATES.ON_GROUND
 
 func _physics_process(delta):
 	if(alive && !finished):
-		if(is_on_floor() && bottomColliding() && !sidesColliding() && !is_on_wall()):
+		if((is_on_floor()) && bottomColliding() && !sidesColliding() && !is_on_wall()):
 			_state = STATES.ON_GROUND
 		if(is_on_floor() && bottomColliding() && sidesColliding() && is_on_wall()):
 			_state = STATES.ON_GROUND_TOUCHING_WALL
@@ -52,6 +52,8 @@ func _physics_process(delta):
 		
 		if(_state == STATES.JUMPING):
 			$AnimatedSprite.play('jump')
+			if(velocity.y == 0):
+				_state = STATES.ON_GROUND
 			
 		if(Input.is_action_just_pressed("shoot")):
 			shoot()
