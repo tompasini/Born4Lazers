@@ -72,6 +72,7 @@ position = Vector2( 676, -176 )
 
 [node name="Eyebes10" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 640, -176 )
+direction = 1
 
 [node name="Eyebes11" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 590, -64 )
@@ -93,18 +94,23 @@ position = Vector2( 533, 209 )
 
 [node name="Eyebes23" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 606, 209 )
+direction = 1
 
 [node name="Eyebes24" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 636, 209 )
+direction = 1
 
 [node name="Eyebes25" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 520, 209 )
+direction = 1
 
 [node name="Eyebes26" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 793, 209 )
+direction = 1
 
 [node name="Eyebes27" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 766, 209 )
+direction = 1
 
 [node name="Eyebes28" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 717, 209 )
@@ -117,6 +123,7 @@ position = Vector2( 347, 209 )
 
 [node name="Eyebes14" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 404, 209 )
+direction = 1
 
 [node name="Eyebes15" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 444, 209 )
@@ -126,9 +133,11 @@ position = Vector2( 377, 209 )
 
 [node name="Eyebes17" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 318, 209 )
+direction = 1
 
 [node name="Eyebes18" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 431, 209 )
+direction = 1
 
 [node name="Eyebes7" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 155, 48 )
@@ -140,7 +149,6 @@ detects_cliffs = false
 
 [node name="Eyebes3" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( -36, 209 )
-direction = 1
 detects_cliffs = false
 
 [node name="Eyebes4" parent="Eyebes" instance=ExtResource( 1 )]
