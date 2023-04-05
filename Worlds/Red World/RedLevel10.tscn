@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Test Boss Size 128.png" type="Texture" id=3]
@@ -22,6 +22,9 @@ extents = Vector2( 56, 8 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 225, 56 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 39, 224 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 7 )
@@ -104,5 +107,13 @@ limit_smoothed = true
 position = Vector2( 165, 160 )
 texture = ExtResource( 3 )
 
+[node name="StartArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartArea"]
+position = Vector2( -97, 0 )
+shape = SubResource( 8 )
+
 [connection signal="body_entered" from="FallZone" to="LZer" method="_on_FallZone_body_entered"]
 [connection signal="body_entered" from="Switch" to="." method="_on_Switch_body_entered"]
+[connection signal="body_entered" from="StartArea" to="." method="_on_StartArea_body_entered"]
