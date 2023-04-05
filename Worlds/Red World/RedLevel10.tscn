@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Test Boss Size 128.png" type="Texture" id=3]
-[ext_resource path="res://Interactables/Switches/RedSwitch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Backgrounds/Red World/Background Evening.png" type="Texture" id=8]
 [ext_resource path="res://Resources/Tilesets/RedTileset1.tres" type="TileSet" id=9]
@@ -87,9 +86,9 @@ __meta__ = {
 position = Vector2( 58, 75 )
 shape = SubResource( 3 )
 
-[node name="Switch" parent="." instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 713, 192 )
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 165, 160 )
+texture = ExtResource( 3 )
 
 [node name="LZer" parent="." instance=ExtResource( 2 )]
 position = Vector2( -211, 216 )
@@ -103,10 +102,6 @@ limit_right = 3000
 limit_bottom = 600
 limit_smoothed = true
 
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 165, 160 )
-texture = ExtResource( 3 )
-
 [node name="StartArea" type="Area2D" parent="."]
 collision_layer = 0
 
@@ -115,5 +110,4 @@ position = Vector2( -97, 0 )
 shape = SubResource( 8 )
 
 [connection signal="body_entered" from="FallZone" to="LZer" method="_on_FallZone_body_entered"]
-[connection signal="body_entered" from="Switch" to="." method="_on_Switch_body_entered"]
 [connection signal="body_entered" from="StartArea" to="." method="_on_StartArea_body_entered"]
