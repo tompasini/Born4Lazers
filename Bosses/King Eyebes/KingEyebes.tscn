@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Bosses/King Eyebes/King Eyebes.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Bosses/King Eyebes/King Eyebes Hit Aura.png" type="Texture" id=2]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -18,3 +19,7 @@ animation = "idle"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -17, -29, -28, -23, -37, -15, -44, -5, -48, 5, -48, 16, -45, 28, -39, 37, -32, 44, -19, 51, -9, 53, -5, 54, 7, 54, 17, 52, 28, 46, 38, 38, 45, 27, 48, 17, 48, 6, 47, 0, 40, -11, 31, -21, 16, -28, 7, -30, -6, -30 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )
