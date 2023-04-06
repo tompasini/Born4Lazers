@@ -18,7 +18,11 @@ func _ready():
 
 func _on_Body_body_entered(body):
 	if(body.name == 'LZer'):
-		print('we hit here')
 		body.hurt()
 	elif(body.name == 'Laser'):
-		print('hit by laser')
+		$HitAura.visible = true
+		$HitAuraTimer.start()
+
+
+func _on_HitAuraTimer_timeout():
+	$HitAura.visible = false
