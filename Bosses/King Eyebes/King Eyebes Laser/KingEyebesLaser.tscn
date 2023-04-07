@@ -7,6 +7,7 @@
 extents = Vector2( 16, 1.5 )
 
 [node name="KingEyebesLaser" type="KinematicBody2D"]
+collision_layer = 16
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -19,3 +20,5 @@ shape = SubResource( 1 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

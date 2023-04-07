@@ -14,4 +14,4 @@ func _on_Switch_body_entered(body):
 func _on_StartArea_body_entered(body):
 	if(body.name == "LZer"):
 		$StartArea.queue_free()
-		print('start fight')
+		$KingEyebes.get_child(5).start()

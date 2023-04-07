@@ -43,7 +43,7 @@ format = 1
 tile_data = PoolIntArray( 393222, 3, 0, 393223, 3, 0, 393224, 3, 0, 393225, 3, 0, 393226, 3, 0, 393227, 3, 0, 393228, 3, 0, 393229, 3, 0, 720893, 3, 0, 720894, 3, 0, 720895, 3, 0, 655360, 3, 0, 655361, 3, 0, 655362, 3, 0, 655363, 3, 0, 655376, 3, 0, 655377, 3, 0, 655378, 3, 0, 655379, 3, 0, 655380, 3, 0, 655381, 3, 0, 655382, 3, 0 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TilesOneWay"]
-collision_layer = 2
+collision_layer = 128
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TilesOneWay/StaticBody2D"]
