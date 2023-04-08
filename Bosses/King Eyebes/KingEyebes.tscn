@@ -1,13 +1,25 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Bosses/King Eyebes/King Eyebes.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Bosses/King Eyebes/King Eyebes Hit Aura.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/KingEyebes.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Bosses/King Eyebes/King Eyebes Dead.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Bosses/King Eyebes/King Eyebes Jump.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Bosses/King Eyebes/King Eyebes Slide Left.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Bosses/King Eyebes/King Eyebes Slide Right.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "dash_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "dash_right",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "dead",
