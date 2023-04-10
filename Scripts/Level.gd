@@ -15,3 +15,4 @@ func _on_StartArea_body_entered(body):
 	if(body.name == "LZer"):
 		$StartArea.queue_free()
 		$KingEyebes.get_child(5).start()
+		$KingEyebes.level_started = true

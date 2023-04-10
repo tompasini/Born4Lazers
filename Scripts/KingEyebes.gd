@@ -3,12 +3,13 @@ extends KinematicBody2D
 
 # Declare member variables here. Examples:
 var velocity = Vector2(0,0)
-var life = 50
+var life = 150
 var eyebes_direction = -1
 var jump_direction = -1
 var dash_direction = 1
 var action = 1
 var has_dashed = false
+var level_started = false
 const EYEBES = preload("res://Enemies/Eyebes.tscn")
 const GRAVITY = 35
 
@@ -86,7 +87,6 @@ func jump():
 
 func dash():
 	velocity.x = (700 * dash_direction)
-	$DashTimer.start()
 	action = 1
 
 func _on_AttackTimer_timeout():
