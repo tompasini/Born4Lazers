@@ -30,8 +30,6 @@ func _physics_process(delta):
 	if(_state == STATES.IDLE):
 		$AnimatedSprite.play("idle")
 	if(_state == STATES.JUMPING):
-		if(velocity.y == -600):
-			velocity.x = (600 & jump_direction)
 		$AnimatedSprite.play("jump")
 	if(_state == STATES.DASHING):
 		if(dash_direction == 1):
@@ -76,7 +74,7 @@ func spawn_eyebes():
 
 func jump():
 	velocity.y = -600
-	velocity.x = (600 * jump_direction)
+	velocity.x = (650 * jump_direction)
 	if(has_dashed):
 		dash_direction = dash_direction * -1
 	if(dash_direction == 1):
