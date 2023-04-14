@@ -190,8 +190,8 @@ func hit_by_laser(body):
 script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 384.5, 49.0004 )
-scale = Vector2( 2.57031, 1.81667 )
+position = Vector2( 186, -19.4994 )
+scale = Vector2( 3.19062, 2.10209 )
 texture = ExtResource( 8 )
 
 [node name="TilesOneWay" type="TileMap" parent="."]
@@ -280,14 +280,6 @@ script = SubResource( 14 )
 
 [node name="Eyebes15" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 105, 80 )
-script = SubResource( 14 )
-
-[node name="Eyebes14" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( -154, -48 )
-script = SubResource( 14 )
-
-[node name="Eyebes13" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 225, -48 )
 script = SubResource( 14 )
 
 [node name="Eyebes12" parent="Eyebes" instance=ExtResource( 1 )]
