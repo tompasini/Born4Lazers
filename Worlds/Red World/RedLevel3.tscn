@@ -286,10 +286,6 @@ script = SubResource( 14 )
 position = Vector2( -154, -48 )
 script = SubResource( 14 )
 
-[node name="Eyebes13" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 225, -48 )
-script = SubResource( 14 )
-
 [node name="Eyebes12" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 92, 144 )
 script = SubResource( 14 )
@@ -310,16 +306,8 @@ script = SubResource( 15 )
 position = Vector2( 289, 80 )
 script = SubResource( 15 )
 
-[node name="Eyebes5" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 127, -111 )
-script = SubResource( 15 )
-
 [node name="Eyebes6" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 305, 144 )
-script = SubResource( 15 )
-
-[node name="Eyebes7" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 128, -48 )
 script = SubResource( 15 )
 
 [node name="Eyebes8" parent="Eyebes" instance=ExtResource( 1 )]
