@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Enemies/Eyebes.tscn" type="PackedScene" id=1]
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
@@ -25,7 +25,7 @@ extents = Vector2( 31.5, 7.875 )
 extents = Vector2( 24, 8 )
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 8.49999, 8 )
+extents = Vector2( 24.5, 8 )
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 8, 8 )
@@ -35,156 +35,6 @@ extents = Vector2( 8, 8 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 225, 56 )
-
-[sub_resource type="GDScript" id=14]
-script/source = "extends KinematicBody2D
-
-var velocity = Vector2()
-export var direction = -1
-export var detects_cliffs = true
-var speed = 50
-var life = 10
-
-func _ready():
-	if(direction == 1):
-		$AnimatedSprite.flip_h = true
-	$FloorChecker.position.x = $CollisionShape2D.shape.get_radius() * direction
-	$FloorChecker.enabled = detects_cliffs	
-
-func  _physics_process(delta):
-	if(is_on_wall() || (!$FloorChecker.is_colliding() && detects_cliffs && is_on_floor())):
-		direction *= -1
-		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
-		$FloorChecker.position.x = $CollisionShape2D.shape.get_radius() * direction
-	
-	velocity.y += 20
-	
-	velocity.x = speed * direction
-	
-	velocity = move_and_slide(velocity, Vector2.UP)
-
-
-func _on_TopChecker_body_entered(body):
-	if(body.name == 'LZer'):
-		$AnimatedSprite.play('squished')
-		speed = 0
-		remove_collisions()
-		$Timer.start()
-		body.bounce()
-	elif(body.name == 'Laser'):
-		hit_by_laser(body)
-
-func _on_Sides_body_entered(body):
-	if(body.name == 'LZer'):
-		body.hurt()
-	elif(body.name == 'Laser'):
-		hit_by_laser(body)
-
-func _on_Timer_timeout():
-	queue_free()
-	GlobalVariables.update_score((GlobalVariables.score + 100))
-	
-	
-
-
-func _on_AnimatedSprite_animation_finished():
-	if($AnimatedSprite.animation == 'hit' && life):
-		$AnimatedSprite.play('walk')
-		
-func remove_collisions():
-	set_collision_layer_bit(4, false)
-	set_collision_mask_bit(0, false)
-	$TopChecker.set_collision_layer_bit(4, false)
-	$TopChecker.set_collision_mask_bit(0, false)
-	$Sides.set_collision_layer_bit(4, false)
-	$Sides.set_collision_mask_bit(0, false)
-
-func hit_by_laser(body):
-	if(life):
-		$AnimatedSprite.play('hit')
-		body.queue_free()
-		life -= GlobalVariables.laser_damage
-	if(!life):
-		remove_collisions()	
-		$AnimatedSprite.play('fall')
-		speed = 0		
-		$Timer.start()
-"
-
-[sub_resource type="GDScript" id=15]
-script/source = "extends KinematicBody2D
-
-var velocity = Vector2()
-export var direction = -1
-export var detects_cliffs = true
-var speed = 50
-var life = 10
-
-func _ready():
-	if(direction == 1):
-		$AnimatedSprite.flip_h = true
-	$FloorChecker.position.x = $CollisionShape2D.shape.get_radius() * direction
-	$FloorChecker.enabled = detects_cliffs	
-
-func  _physics_process(delta):
-	if(is_on_wall() || (!$FloorChecker.is_colliding() && detects_cliffs && is_on_floor())):
-		direction *= -1
-		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
-		$FloorChecker.position.x = $CollisionShape2D.shape.get_radius() * direction
-	
-	velocity.y += 20
-	
-	velocity.x = speed * direction
-	
-	velocity = move_and_slide(velocity, Vector2.UP)
-
-
-func _on_TopChecker_body_entered(body):
-	if(body.name == 'LZer'):
-		$AnimatedSprite.play('squished')
-		speed = 0
-		remove_collisions()
-		$Timer.start()
-		body.bounce()
-	elif(body.name == 'Laser'):
-		hit_by_laser(body)
-
-func _on_Sides_body_entered(body):
-	if(body.name == 'LZer'):
-		body.hurt()
-	elif(body.name == 'Laser'):
-		hit_by_laser(body)
-
-func _on_Timer_timeout():
-	queue_free()
-	GlobalVariables.update_score((GlobalVariables.score + 100))
-	
-	
-
-
-func _on_AnimatedSprite_animation_finished():
-	if($AnimatedSprite.animation == 'hit' && life):
-		$AnimatedSprite.play('walk')
-		
-func remove_collisions():
-	set_collision_layer_bit(4, false)
-	set_collision_mask_bit(0, false)
-	$TopChecker.set_collision_layer_bit(4, false)
-	$TopChecker.set_collision_mask_bit(0, false)
-	$Sides.set_collision_layer_bit(4, false)
-	$Sides.set_collision_mask_bit(0, false)
-
-func hit_by_laser(body):
-	if(life):
-		$AnimatedSprite.play('hit')
-		body.queue_free()
-		life -= GlobalVariables.laser_damage
-	if(!life):
-		remove_collisions()	
-		$AnimatedSprite.play('fall')
-		speed = 0		
-		$Timer.start()
-"
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 7 )
@@ -233,7 +83,7 @@ shape = SubResource( 8 )
 one_way_collision = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="TilesOneWay/StaticBody2D"]
-position = Vector2( -184, 104 )
+position = Vector2( -183.5, 104 )
 shape = SubResource( 9 )
 one_way_collision = true
 
@@ -276,47 +126,36 @@ position = Vector2( -66, -353 )
 
 [node name="Eyebes2" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 229, -175 )
-script = SubResource( 14 )
 
 [node name="Eyebes15" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 105, 80 )
-script = SubResource( 14 )
 
 [node name="Eyebes14" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( -154, -48 )
-script = SubResource( 14 )
 
 [node name="Eyebes12" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 92, 144 )
-script = SubResource( 14 )
 
 [node name="Eyebes11" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( -138, 17 )
-script = SubResource( 14 )
 
 [node name="Eyebes10" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 26, 80 )
-script = SubResource( 15 )
 
 [node name="Eyebes3" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 92, 17 )
-script = SubResource( 15 )
 
 [node name="Eyebes4" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 289, 80 )
-script = SubResource( 15 )
 
 [node name="Eyebes6" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( 305, 144 )
-script = SubResource( 15 )
 
 [node name="Eyebes8" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( -40, -175 )
-script = SubResource( 15 )
 
 [node name="Eyebes9" parent="Eyebes" instance=ExtResource( 1 )]
 position = Vector2( -184, -111 )
-script = SubResource( 15 )
 
 [node name="Switch" parent="." instance=ExtResource( 5 )]
 position = Vector2( 306, -192 )
