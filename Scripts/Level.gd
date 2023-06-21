@@ -6,6 +6,7 @@ func _ready():
 
 
 func _on_Switch_body_entered(body):
+	$LZer.remove_collisions()
 	$LZer.finished = true
 	$Switch.get_node("AnimatedSprite").play("pressed")
 	$LZer.get_node("AnimatedSprite").play("finished")

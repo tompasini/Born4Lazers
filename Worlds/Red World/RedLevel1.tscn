@@ -43,9 +43,6 @@ shape = SubResource( 3 )
 [node name="RedBat" parent="Bats" instance=ExtResource( 4 )]
 position = Vector2( 797, 120 )
 
-[node name="RedBat2" parent="Bats" instance=ExtResource( 4 )]
-position = Vector2( 725, 158 )
-
 [node name="Eyebes" type="Node2D" parent="."]
 
 [node name="Eyebes" parent="Eyebes" instance=ExtResource( 1 )]
