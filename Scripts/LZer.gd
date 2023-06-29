@@ -31,7 +31,7 @@ func _physics_process(delta):
 			
 		if (Input.is_action_pressed("right")):
 			direction = 1
-			if(bottomColliding() || !is_on_wall()):
+			if(_state != STATES.ON_WALL_IN_AIR || is_on_floor()):
 				$AnimatedSprite.flip_h = false				
 				if(Input.is_action_pressed("run")):
 					speedMultiplier = 2
@@ -41,7 +41,7 @@ func _physics_process(delta):
 				move()
 		elif(Input.is_action_pressed("left")):
 			direction = -1
-			if(bottomColliding() || !is_on_wall()):
+			if(_state != STATES.ON_WALL_IN_AIR || is_on_floor()):
 				$AnimatedSprite.flip_h = true				
 				if(Input.is_action_pressed("run")):
 					speedMultiplier = 2
