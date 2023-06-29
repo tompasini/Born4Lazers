@@ -45,6 +45,8 @@ func _physics_process(delta):
 				$AnimatedSprite.flip_h = true				
 				if(Input.is_action_pressed("run")):
 					speedMultiplier = 2
+				else:
+					speedMultiplier = 1
 				velocity.x = (-SPEED * speedMultiplier)
 				move()
 		else:
