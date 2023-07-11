@@ -40,8 +40,8 @@ extents = Vector2( 225, 56 )
 script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 384.5, 49.0004 )
-scale = Vector2( 2.57031, 1.81667 )
+position = Vector2( 361, 6.50054 )
+scale = Vector2( 2.64375, 1.99375 )
 texture = ExtResource( 8 )
 
 [node name="TilesOneWay" type="TileMap" parent="."]
@@ -124,38 +124,38 @@ position = Vector2( -66, -353 )
 
 [node name="Eyebes" type="Node2D" parent="."]
 
-[node name="Eyebes2" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 229, -175 )
+[node name="Eyebes" parent="Eyebes" instance=ExtResource( 1 )]
+position = Vector2( 86, 144 )
 
-[node name="Eyebes15" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 105, 80 )
-
-[node name="Eyebes14" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( -154, -48 )
-
-[node name="Eyebes12" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 92, 144 )
-
-[node name="Eyebes11" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( -138, 17 )
-
-[node name="Eyebes10" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 26, 80 )
-
-[node name="Eyebes3" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 92, 17 )
-
-[node name="Eyebes4" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 289, 80 )
+[node name="Eyebes5" parent="Eyebes" instance=ExtResource( 1 )]
+position = Vector2( 307, 144 )
 
 [node name="Eyebes6" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( 305, 144 )
+position = Vector2( -13, 80 )
 
-[node name="Eyebes8" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( -40, -175 )
+[node name="Eyebes7" parent="Eyebes" instance=ExtResource( 1 )]
+position = Vector2( 108, 80 )
+
+[node name="Eyebes10" parent="Eyebes" instance=ExtResource( 1 )]
+position = Vector2( 294, 80 )
+
+[node name="Eyebes4" parent="Eyebes" instance=ExtResource( 1 )]
+position = Vector2( -139, 16 )
+
+[node name="Eyebes11" parent="Eyebes" instance=ExtResource( 1 )]
+position = Vector2( 103, 16 )
+
+[node name="Eyebes3" parent="Eyebes" instance=ExtResource( 1 )]
+position = Vector2( -157, -48 )
+
+[node name="Eyebes12" parent="Eyebes" instance=ExtResource( 1 )]
+position = Vector2( -184, -113 )
 
 [node name="Eyebes9" parent="Eyebes" instance=ExtResource( 1 )]
-position = Vector2( -184, -111 )
+position = Vector2( -43, -176 )
+
+[node name="Eyebes8" parent="Eyebes" instance=ExtResource( 1 )]
+position = Vector2( 229, -176 )
 
 [node name="Switch" parent="." instance=ExtResource( 5 )]
 position = Vector2( 306, -192 )
