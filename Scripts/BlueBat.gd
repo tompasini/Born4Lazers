@@ -1,6 +1,8 @@
 extends RigidBody2D
 
 var life = 45
+const LASER = preload("res://Enemies/Lasers/Blue Laser.tscn")
+export var direction = -1
 
 func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if(body.name == 'Laser'):
@@ -20,3 +22,14 @@ func remove_collisions():
 	
 func _on_HitTimer_timeout():
 	$AnimatedSprite.play("flap")
+
+func shoot():
+	var l = LASER.instance()
+	l.direction = direction
+	get_parent().add_child(l)
+	l.position.y = position.y - 7
+	l.position.x = position.x + 18
+
+
+func _on_LaserTimer_timeout():
+	shoot()

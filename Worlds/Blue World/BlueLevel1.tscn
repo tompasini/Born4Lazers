@@ -34,4 +34,8 @@ limit_smoothed = true
 smoothing_speed = 12.0
 
 [node name="BlueBat" parent="." instance=ExtResource( 5 )]
-position = Vector2( 114, 175 )
+position = Vector2( 143, 181 )
+
+[node name="BlueBat2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -2, 164 )
+direction = 1

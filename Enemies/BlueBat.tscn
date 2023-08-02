@@ -55,5 +55,10 @@ shape = SubResource( 3 )
 [node name="HitTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_Area2D_body_shape_entered"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_HitTimer_timeout"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_LaserTimer_timeout"]
