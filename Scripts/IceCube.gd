@@ -4,18 +4,21 @@ var velocity = Vector2(0,0)
 var life = 30
 export var direction = 1
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if(direction == 1):
+		$AnimatedSprite.flip_h = true
+	$FloorChecker.position.x = ($CollisionShape2D.shape.extents.x) * direction
 	
-#func _physics_process(delta):
-#	if(is_on_wall() || (!$FloorChecker.is_colliding() && is_on_floor())):
-#		direction *= -1
-#		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
-#		$FloorChecker.position.x = $CollisionShape2D.shape.get_radius() * direction
-#
-#	velocity = move_and_slide(velocity, Vector2.UP)
+func _physics_process(delta):
+	if(is_on_wall() || (!$FloorChecker.is_colliding())):
+		print('we hit this')
+		direction *= -1
+		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
+		$FloorChecker.position.x = $CollisionShape2D.shape.extents.x * direction
+		velocity.x = 0
+		$DashTimer.start()
+
+	velocity = move_and_slide(velocity, Vector2.UP)
 
 
 func _on_Body_body_entered(body):
@@ -38,8 +41,12 @@ func remove_collisions():
 	$Body.set_collision_mask_bit(5, false)
 
 func dash():
-	velocity.x = (700 * direction)
+	velocity.x = (350 * direction)
 
 
 func _on_HitTimer_timeout():
 	$AnimatedSprite.play("idle")
+
+
+func _on_DashTimer_timeout():
+	dash()
