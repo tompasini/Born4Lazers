@@ -87,7 +87,8 @@ func valid_wall_jump():
 	return (Input.is_action_just_pressed("jump") && ((Input.is_action_pressed("right") && $LeftSide.is_colliding()) || (Input.is_action_pressed("left") && $RightSide.is_colliding())))
 
 func _on_FallZone_body_entered(body):
-	get_tree().reload_current_scene()
+	if(body.name == "LZer"):
+		get_tree().reload_current_scene()
 
 func bounce():
 	velocity.y = JUMPFORCE * 0.5

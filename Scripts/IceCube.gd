@@ -11,7 +11,6 @@ func _ready():
 	
 func _physics_process(delta):
 	if(is_on_wall() || (!$FloorChecker.is_colliding())):
-		print('we hit this')
 		direction *= -1
 		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
 		$FloorChecker.position.x = $CollisionShape2D.shape.extents.x * direction
