@@ -39,7 +39,7 @@ position = Vector2( 304, 96 )
 direction = -1
 
 [node name="CrumblingPlatform" parent="." instance=ExtResource( 7 )]
-position = Vector2( 129, 171 )
+position = Vector2( 114, 115 )
 
 [node name="LZer" parent="." instance=ExtResource( 3 )]
 position = Vector2( 65, 184 )
