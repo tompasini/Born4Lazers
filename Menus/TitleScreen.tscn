@@ -26,6 +26,7 @@ alignment = 1
 margin_top = 166.0
 margin_right = 128.0
 margin_bottom = 230.0
+focus_neighbour_top = NodePath("../Quit")
 focus_neighbour_bottom = NodePath("../Level Select")
 focus_mode = 2
 texture = ExtResource( 1 )
@@ -34,6 +35,7 @@ texture = ExtResource( 1 )
 margin_top = 234.0
 margin_right = 128.0
 margin_bottom = 298.0
+focus_neighbour_bottom = NodePath("../Options")
 focus_mode = 1
 texture = ExtResource( 2 )
 
@@ -41,13 +43,27 @@ texture = ExtResource( 2 )
 margin_top = 302.0
 margin_right = 128.0
 margin_bottom = 366.0
+focus_neighbour_bottom = NodePath("../Quit")
+focus_mode = 2
 texture = ExtResource( 3 )
 
 [node name="Quit" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 margin_top = 370.0
 margin_right = 128.0
 margin_bottom = 434.0
+focus_neighbour_bottom = NodePath("../Play")
+focus_mode = 2
 texture = ExtResource( 4 )
 
 [connection signal="focus_entered" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_Play_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_Play_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_Play_mouse_entered"]
 [connection signal="focus_entered" from="HBoxContainer/VBoxContainer/Level Select" to="." method="_on_Level_Select_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/VBoxContainer/Level Select" to="." method="_on_Level_Select_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/Level Select" to="." method="_on_Level_Select_mouse_entered"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainer/Options" to="." method="_on_Options_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/VBoxContainer/Options" to="." method="_on_Options_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/Options" to="." method="_on_Options_mouse_entered"]
+[connection signal="focus_entered" from="HBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_focus_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_mouse_entered"]
