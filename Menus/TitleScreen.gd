@@ -8,6 +8,11 @@ var default = Color(1, 1, 1, 1)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HBoxContainer/VBoxContainer/Play.grab_focus()
+	
+func _process(delta):
+	if(Input.is_action_just_pressed("select")):
+		if($HBoxContainer/VBoxContainer/Play.has_focus()):
+			SceneManager.goto_current_level()
 
 func _on_Play_focus_entered():
 	$HBoxContainer/VBoxContainer/Play.modulate = yellow

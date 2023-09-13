@@ -3,6 +3,7 @@ extends Node
 
 var current_scene = null
 var current_level = 1
+var current_world = "Red"
 
 func _ready():
 	var root = get_tree().get_root()
@@ -10,6 +11,9 @@ func _ready():
 
 func goto_scene(path, level_change):
 	call_deferred("_deferred_goto_scene", path)
+	
+func goto_current_level():
+	call_deferred("_deferred_goto_scene", "res://Worlds/" + current_world + " World/" + current_world + "Level" + str(current_level) + ".tscn")
 	
 func next_level(world):
 	current_level += 1
@@ -31,3 +35,6 @@ func _deferred_goto_scene(path):
 #
 #	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 #	get_tree().set_current_scene(current_scene)
+
+func save_game():
+	pass
