@@ -145,7 +145,7 @@ func _on_AnimatedSprite_animation_finished():
 	if($AnimatedSprite.animation == "dead"):
 		$Timer.start()
 	elif($AnimatedSprite.animation == "finished"):
-		SceneManager.next_level(GlobalVariables.currentWorld)
+		SceneManager.next_level(SceneManager.current_world)
 
 func remove_collisions():
 	set_collision_layer_bit(0, false)

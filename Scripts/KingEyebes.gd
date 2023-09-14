@@ -17,6 +17,8 @@ enum STATES {IDLE, JUMPING, DASHING, DEAD}
 
 var _state = STATES.IDLE
 
+signal transition_world
+
 func _physics_process(delta):
 	if(_state != STATES.DEAD):
 		if(is_on_floor() && velocity.x == 0):
@@ -56,6 +58,7 @@ func _on_Body_body_entered(body):
 			_state = STATES.DEAD
 			remove_collisions()
 			$HitAura.visible = false
+			emit_signal("transition_world")
 
 func _on_HitAuraTimer_timeout():
 	$HitAura.visible = false
