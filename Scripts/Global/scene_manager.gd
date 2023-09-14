@@ -13,10 +13,17 @@ func goto_scene(path, level_change):
 	call_deferred("_deferred_goto_scene", path)
 	
 func goto_current_level():
+	var save_game = File.new()
+	if(save_game.file_exists("user://savegame.save")):
+		save_game.open("user://savegame.save", File.READ)
+		var save_data = parse_json(save_game.get_line())
+		current_world = save_data["current_world"]
+		current_level = save_data["current_level"]
 	call_deferred("_deferred_goto_scene", "res://Worlds/" + current_world + " World/" + current_world + "Level" + str(current_level) + ".tscn")
 	
 func next_level(world):
 	current_level += 1
+	save_game()
 	call_deferred("_deferred_goto_scene", "res://Worlds/" + world + " World/" + world + "Level" + str(current_level) + ".tscn")
 
 func _deferred_goto_scene(path):
@@ -37,4 +44,10 @@ func _deferred_goto_scene(path):
 #	get_tree().set_current_scene(current_scene)
 
 func save_game():
-	pass
+	var save_game = File.new()
+	save_game.open("user://savegame.save", File.WRITE)
+	save_game.store_line(to_json({
+		"current_world": current_world,
+		"current_level": current_level
+	}))
+	save_game.close()
