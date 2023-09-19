@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="Label" type="Label"]
+margin_right = 792.0
+margin_bottom = 422.0
+text = "Level Select"
+align = 1
+valign = 1

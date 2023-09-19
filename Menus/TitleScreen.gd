@@ -13,6 +13,12 @@ func _process(delta):
 	if(Input.is_action_just_pressed("select")):
 		if($HBoxContainer/VBoxContainer/Play.has_focus()):
 			SceneManager.goto_current_level()
+		elif($"HBoxContainer/VBoxContainer/Level Select".has_focus()):
+			SceneManager.goto_scene("res://Menus/LevelSelectScreen.tscn")
+		elif($"HBoxContainer/VBoxContainer/Options".has_focus()):
+			SceneManager.goto_scene("res://Menus/OptionsScreen.tscn")
+		elif($HBoxContainer/VBoxContainer/Quit.has_focus()):
+			SceneManager.quit_game()
 
 func _on_Play_focus_entered():
 	$HBoxContainer/VBoxContainer/Play.modulate = yellow

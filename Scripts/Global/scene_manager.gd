@@ -9,7 +9,7 @@ func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
 
-func goto_scene(path, level_change):
+func goto_scene(path):
 	call_deferred("_deferred_goto_scene", path)
 	
 func goto_current_level():
@@ -51,3 +51,6 @@ func save_game():
 		"current_level": current_level
 	}))
 	save_game.close()
+
+func quit_game():
+	get_tree().quit()
