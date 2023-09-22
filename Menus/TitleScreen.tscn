@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Menu Items/Title Screen/Play Menu Item.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Menu Items/Title Screen/Level Select Menu Item.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Menu Items/Title Screen/Quit Menu Item.png" type="Texture" id=4]
 [ext_resource path="res://Menus/TitleScreen.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Backgrounds/Menus/Title Screen Background.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Logos/Menu Logo.png" type="Texture" id=7]
 
 [node name="TitleScreen" type="MarginContainer"]
 anchor_right = 1.0
@@ -13,9 +14,13 @@ anchor_bottom = 1.0
 script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 513.5, 300.5 )
-scale = Vector2( 1.59219, 1.25208 )
+position = Vector2( 510.5, 299 )
+scale = Vector2( 1.60156, 1.25833 )
 texture = ExtResource( 6 )
+
+[node name="MenuLogo" type="Sprite" parent="."]
+position = Vector2( 512, 187 )
+texture = ExtResource( 7 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 1024.0
