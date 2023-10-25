@@ -7,6 +7,9 @@ var finished = false
 var direction = 1
 var oldDirection = 1
 var speedMultiplier = 1
+var health = 15
+var maxHealth = 15
+var hit = false
 const SPEED = 90
 const JUMPFORCE = -550
 const GRAVITY = 35
@@ -50,10 +53,16 @@ func _physics_process(delta):
 				velocity.x = (-SPEED * speedMultiplier)
 				move()
 		else:
-			$AnimatedSprite.play('idle')	
+			if(!hit):
+				$AnimatedSprite.play("idle")
+			else:
+				$AnimatedSprite.play("hit")
 		
 		if(_state == STATES.JUMPING):
-			$AnimatedSprite.play('jump')
+			if(!hit):
+				$AnimatedSprite.play("jump")
+			else:
+				$AnimatedSprite.play("jump_hit")
 			if(velocity.y == 0):
 				_state = STATES.ON_GROUND
 			
@@ -95,11 +104,16 @@ func bounce():
 
 
 func hurt():
-	alive = false
-	Input.action_release('left')
-	Input.action_release('right')
-	remove_collisions()
-	$AnimatedSprite.play('dead')
+	health -= 5
+	if(health < 0):	
+		alive = false
+		Input.action_release('left')
+		Input.action_release('right')
+		remove_collisions()
+		$AnimatedSprite.play('dead')
+	else:
+		hit = true
+		$HitTimer.start();
 	
 func shoot():
 	var l = LASER.instance()
@@ -111,9 +125,15 @@ func shoot():
 	
 func move():
 	if(speedMultiplier == 1):
-		$AnimatedSprite.play("walk")
+		if(!hit):
+			$AnimatedSprite.play("walk")
+		else:
+			$AnimatedSprite.play("hit")
 	else:
-		$AnimatedSprite.play("run")
+		if(!hit):
+			$AnimatedSprite.play("run")
+		else:
+			$AnimatedSprite.play("run_hit")
 
 func jump():
 	if(speedMultiplier == 1 && bottomColliding()):
@@ -154,3 +174,16 @@ func remove_collisions():
 	$RightSide.enabled = false
 	$Bottom.enabled = false
 	$Top.enabled = false
+
+func increase_health():
+	print(health, maxHealth)
+	maxHealth += 5
+	if((maxHealth - health) <= 10):
+		health = maxHealth
+	else:
+		health += 5
+	print(health, maxHealth)
+
+
+func _on_HitTimer_timeout():
+	hit = false
