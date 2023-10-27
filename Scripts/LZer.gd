@@ -182,14 +182,16 @@ func remove_collisions():
 	$Top.enabled = false
 
 func increase_health():
-	print(health, maxHealth)
 	maxHealth += 5
 	if((maxHealth - health) <= 10):
 		health = maxHealth
 	else:
 		health += 5
-	print(health, maxHealth)
-
+	
+func increase_damage():
+	print(damage)
+	damage += 5
+	print(damage)
 
 func _on_HitTimer_timeout():
 	hit = false
