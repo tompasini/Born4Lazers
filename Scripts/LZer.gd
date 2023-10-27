@@ -74,9 +74,15 @@ func _physics_process(delta):
 		else:
 			$AnimatedSprite.flip_h = false
 			if($LeftSide.is_colliding()):
-				$AnimatedSprite.play("left_wall")
+				if(!hit):
+					$AnimatedSprite.play("left_wall")
+				else:
+					$AnimatedSprite.play("left_wall_hit")
 			elif($RightSide.is_colliding()):
-				$AnimatedSprite.play("right_wall")
+				if(!hit):
+					$AnimatedSprite.play("right_wall")
+				else:
+					$AnimatedSprite.play("right_wall_hit")
 			if(Input.is_action_pressed("slide_down")):
 				velocity.y = 180
 			else:
@@ -128,7 +134,7 @@ func move():
 		if(!hit):
 			$AnimatedSprite.play("walk")
 		else:
-			$AnimatedSprite.play("hit")
+			$AnimatedSprite.play("walk_hit")
 	else:
 		if(!hit):
 			$AnimatedSprite.play("run")
