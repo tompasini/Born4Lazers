@@ -10,7 +10,8 @@ var speedMultiplier = 1
 var health = 15
 var maxHealth = 15
 var hit = false
-const SPEED = 90
+var speed = 90
+var maxSpeed = 300
 const JUMPFORCE = -550
 const GRAVITY = 35
 const LASER = preload("res://Laser.tscn")
@@ -40,7 +41,7 @@ func _physics_process(delta):
 					speedMultiplier = 2
 				else:
 					speedMultiplier = 1
-				velocity.x = (SPEED * speedMultiplier)
+				velocity.x = (speed * speedMultiplier)
 				move()
 		elif(Input.is_action_pressed("left")):
 			direction = -1
@@ -50,7 +51,7 @@ func _physics_process(delta):
 					speedMultiplier = 2
 				else:
 					speedMultiplier = 1
-				velocity.x = (-SPEED * speedMultiplier)
+				velocity.x = (-speed * speedMultiplier)
 				move()
 		else:
 			if(!hit):
@@ -189,9 +190,13 @@ func increase_health():
 		health += 5
 	
 func increase_damage():
-	print(damage)
 	damage += 5
-	print(damage)
+	
+func increase_speed():
+	if(speed < maxSpeed):
+		print(speed)
+		speed +=10
+		print(speed)
 
 func _on_HitTimer_timeout():
 	hit = false

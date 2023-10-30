@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Resources/Tilesets/RedTileset1.tres" type="TileSet" id=1]
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Enemies/Eyebes.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Resources/Tilesets/RedTilesetOneWay.tres" type="TileSet" id=6]
 [ext_resource path="res://PowerUps/DamagePowerUp.tscn" type="PackedScene" id=7]
+[ext_resource path="res://PowerUps/SpeedPowerUp.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 744, 8 )
@@ -49,6 +50,18 @@ position = Vector2( 458, 456 )
 
 [node name="DamagePowerUp" parent="." instance=ExtResource( 7 )]
 position = Vector2( 507, 457 )
+
+[node name="SpeedPowerUp" parent="." instance=ExtResource( 8 )]
+position = Vector2( 553, 456 )
+
+[node name="SpeedPowerUp2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 589, 455 )
+
+[node name="SpeedPowerUp3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 630, 455 )
+
+[node name="SpeedPowerUp4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 664, 455 )
 
 [node name="LZer" parent="." instance=ExtResource( 2 )]
 position = Vector2( 52, 568 )
