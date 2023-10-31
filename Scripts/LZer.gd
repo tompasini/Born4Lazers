@@ -12,6 +12,8 @@ var maxHealth = 15
 var hit = false
 var speed = 90
 var maxSpeed = 300
+var maxJumps = 1
+var jumpCount = 0
 const JUMPFORCE = -550
 const GRAVITY = 35
 const LASER = preload("res://Laser.tscn")
@@ -32,6 +34,9 @@ func _physics_process(delta):
 			_state = STATES.ON_WALL_IN_AIR
 		if(!is_on_floor() && (!is_on_wall() && !sidesColliding())):
 			_state = STATES.JUMPING
+			
+		if(_state != STATES.JUMPING):
+			jumpCount = 0
 			
 		if (Input.is_action_pressed("right")):
 			direction = 1
@@ -90,8 +95,10 @@ func _physics_process(delta):
 				velocity.y = 0
 				velocity.y += 10
 		
-		if(((Input.is_action_just_pressed("jump") && (_state != STATES.JUMPING && _state != STATES.ON_WALL_IN_AIR)) || valid_wall_jump())):
-			jump()
+		if(((Input.is_action_just_pressed("jump") && (_state != STATES.ON_WALL_IN_AIR)) || valid_wall_jump())):
+			if(jumpCount < maxJumps):
+				jump()
+				jumpCount += 1
 
 		velocity = move_and_slide(velocity, Vector2.UP)
 		
@@ -143,11 +150,11 @@ func move():
 			$AnimatedSprite.play("run_hit")
 
 func jump():
-	if(speedMultiplier == 1 && bottomColliding()):
+	if(speedMultiplier == 1 && (bottomColliding() || _state == STATES.JUMPING)):
 		velocity.y = JUMPFORCE
 	elif(sidesColliding() && !bottomOrTopColliding()):
 		velocity.y = -600
-		velocity.x += (600 * direction)		
+		velocity.x += (600 * direction)
 	else:
 		velocity.y = -700
 		velocity.x += (700 * direction)
@@ -194,9 +201,10 @@ func increase_damage():
 	
 func increase_speed():
 	if(speed < maxSpeed):
-		print(speed)
 		speed +=10
-		print(speed)
+
+func increase_jumps():
+	maxJumps += 1
 
 func _on_HitTimer_timeout():
 	hit = false
