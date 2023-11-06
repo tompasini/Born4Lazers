@@ -131,7 +131,7 @@ func hurt():
 	
 func shoot():
 	var l = LASER.instance()
-	if($AnimatedSprite.flip_h):
+	if($AnimatedSprite.flip_h || (is_on_wall() && $RightSide.is_colliding())):
 		l.direction = -1
 	get_parent().add_child(l)
 	l.position.y = position.y - 7
