@@ -72,7 +72,7 @@ func _physics_process(delta):
 			if(velocity.y == 0):
 				_state = STATES.ON_GROUND
 			
-		if(Input.is_action_just_pressed("shoot")):
+		if(Input.is_action_pressed("shoot")):
 			shoot()
 		
 		if(_state != STATES.ON_WALL_IN_AIR):
@@ -130,12 +130,8 @@ func hurt():
 		$HitTimer.start();
 	
 func shoot():
-	var l = LASER.instance()
-	if($AnimatedSprite.flip_h || (is_on_wall() && $RightSide.is_colliding())):
-		l.direction = -1
-	get_parent().add_child(l)
-	l.position.y = position.y - 7
-	l.position.x = position.x + 18
+	if($LaserTimer.is_stopped()):
+		$LaserTimer.start()
 	
 func move():
 	if(speedMultiplier == 1):
@@ -188,6 +184,14 @@ func remove_collisions():
 	$RightSide.enabled = false
 	$Bottom.enabled = false
 	$Top.enabled = false
+	
+func create_laser():
+	var l = LASER.instance()
+	if($AnimatedSprite.flip_h || (is_on_wall() && $RightSide.is_colliding())):
+		l.direction = -1
+	get_parent().add_child(l)
+	l.position.y = position.y - 7
+	l.position.x = position.x + 18
 
 func increase_health():
 	maxHealth += 5
@@ -208,3 +212,7 @@ func increase_jumps():
 
 func _on_HitTimer_timeout():
 	hit = false
+
+
+func _on_LaserTimer_timeout():
+	create_laser()
