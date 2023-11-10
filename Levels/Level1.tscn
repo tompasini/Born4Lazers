@@ -4,7 +4,7 @@
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Backgrounds/Background Futuristic 3.png" type="Texture" id=3]
 [ext_resource path="res://PowerUps/HealthPowerUp.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Enemies/Eyebes.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Spawns/PowerUpSpawn.tscn" type="PackedScene" id=5]
 [ext_resource path="res://PowerUps/DamagePowerUp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://PowerUps/SpeedPowerUp.tscn" type="PackedScene" id=8]
 [ext_resource path="res://PowerUps/JumpPowerUp.tscn" type="PackedScene" id=9]
@@ -83,5 +83,5 @@ limit_bottom = 600
 limit_smoothed = true
 smoothing_speed = 12.0
 
-[node name="Eyebes" parent="." instance=ExtResource( 5 )]
-position = Vector2( 244, 559 )
+[node name="PowerUpSpawn" parent="." instance=ExtResource( 5 )]
+position = Vector2( 172, 564 )
