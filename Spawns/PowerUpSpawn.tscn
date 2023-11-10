@@ -1,0 +1,29 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Spawns/Power Up/Power Up Spawn 5.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Spawns/Power Up/Power Up Spawn 4.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Spawns/Power Up/Power Up Spawn 2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Spawns/Power Up/Power Up Spawn 6.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Spawns/Power Up/Power Up Spawn 1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Spawns/Power Up/Power Up Spawn 3.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 12, 12 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="PowerUpSpawn" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+speed_scale = 0.5
