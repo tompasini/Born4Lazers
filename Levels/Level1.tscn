@@ -1,13 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Tilesets/FuturisticOneWAy.tres" type="TileSet" id=1]
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Backgrounds/Background Futuristic 3.png" type="Texture" id=3]
-[ext_resource path="res://PowerUps/HealthPowerUp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Spawns/PowerUpSpawn.tscn" type="PackedScene" id=5]
-[ext_resource path="res://PowerUps/DamagePowerUp.tscn" type="PackedScene" id=7]
-[ext_resource path="res://PowerUps/SpeedPowerUp.tscn" type="PackedScene" id=8]
-[ext_resource path="res://PowerUps/JumpPowerUp.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Resources/Tilesets/FuturisticSolid.tres" type="TileSet" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -16,7 +12,7 @@ extents = Vector2( 744, 8 )
 [node name="Level 1" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1229, 233.5 )
+position = Vector2( 1131, 229 )
 scale = Vector2( 6.55, 2.43125 )
 texture = ExtResource( 3 )
 
@@ -43,32 +39,32 @@ position = Vector2( 1128, 472 )
 shape = SubResource( 1 )
 one_way_collision = true
 
-[node name="HealthPowerUp" parent="." instance=ExtResource( 4 )]
-position = Vector2( 458, 456 )
+[node name="PowerUpSpawn" parent="." instance=ExtResource( 5 )]
+position = Vector2( 248, 228 )
 
-[node name="DamagePowerUp" parent="." instance=ExtResource( 7 )]
-position = Vector2( 507, 457 )
+[node name="PowerUpSpawn2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1109, 180 )
 
-[node name="SpeedPowerUp" parent="." instance=ExtResource( 8 )]
-position = Vector2( 553, 456 )
+[node name="PowerUpSpawn3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 655, 452 )
 
-[node name="SpeedPowerUp2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 589, 455 )
+[node name="PowerUpSpawn4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1126, 452 )
 
-[node name="SpeedPowerUp3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 630, 455 )
+[node name="PowerUpSpawn5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1611, 452 )
 
-[node name="SpeedPowerUp4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 664, 455 )
+[node name="PowerUpSpawn6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1691, 165 )
 
-[node name="JumpPowerUp" parent="." instance=ExtResource( 9 )]
-position = Vector2( 781, 453 )
+[node name="PowerUpSpawn7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1909, 196 )
 
-[node name="JumpPowerUp2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 911, 453 )
+[node name="PowerUpSpawn8" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2200, 116 )
 
-[node name="JumpPowerUp3" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1003, 453 )
+[node name="PowerUpSpawn9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1544, 116 )
 
 [node name="LZer" parent="." instance=ExtResource( 2 )]
 position = Vector2( 52, 568 )
@@ -82,6 +78,3 @@ limit_right = 3000
 limit_bottom = 600
 limit_smoothed = true
 smoothing_speed = 12.0
-
-[node name="PowerUpSpawn" parent="." instance=ExtResource( 5 )]
-position = Vector2( 172, 564 )
