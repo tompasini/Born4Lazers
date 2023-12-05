@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Resources/Tilesets/FuturisticOneWAy.tres" type="TileSet" id=1]
 [ext_resource path="res://LZer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Backgrounds/Background Futuristic 3.png" type="Texture" id=3]
+[ext_resource path="res://Spawns/EnemySpawn.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Spawns/PowerUpSpawn.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Resources/Tilesets/FuturisticSolid.tres" type="TileSet" id=11]
 
@@ -78,3 +79,6 @@ limit_right = 3000
 limit_bottom = 600
 limit_smoothed = true
 smoothing_speed = 12.0
+
+[node name="EnemySpawn" parent="." instance=ExtResource( 4 )]
+position = Vector2( 144, 548 )

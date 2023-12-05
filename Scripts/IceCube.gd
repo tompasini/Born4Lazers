@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var velocity = Vector2(0,0)
 var life = 30
+var speed = 200
 export var direction = 1
 
 func _ready():
@@ -10,13 +11,15 @@ func _ready():
 	$FloorChecker.position.x = ($CollisionShape2D.shape.extents.x) * direction
 	
 func _physics_process(delta):
-	if(is_on_wall() || (!$FloorChecker.is_colliding())):
+	if(is_on_wall()):
 		direction *= -1
 		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
 		$FloorChecker.position.x = $CollisionShape2D.shape.extents.x * direction
-		velocity.x = 0
-		$DashTimer.start()
-
+	
+	velocity.y += 20
+	
+	velocity.x = speed * direction
+	
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 
@@ -39,13 +42,5 @@ func remove_collisions():
 	$Body.set_collision_mask_bit(0, false)
 	$Body.set_collision_mask_bit(5, false)
 
-func dash():
-	velocity.x = (350 * direction)
-
-
 func _on_HitTimer_timeout():
 	$AnimatedSprite.play("idle")
-
-
-func _on_DashTimer_timeout():
-	dash()
