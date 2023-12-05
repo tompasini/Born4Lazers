@@ -21,7 +21,7 @@ animations = [ {
 extents = Vector2( 12.5, 11 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 13, 11 )
+extents = Vector2( 13.5, 12 )
 
 [node name="IceCube" type="KinematicBody2D"]
 collision_layer = 16
@@ -36,17 +36,18 @@ animation = "idle"
 position = Vector2( 0.5, 5 )
 shape = SubResource( 1 )
 
+[node name="FloorChecker" type="RayCast2D" parent="."]
+position = Vector2( 0, -9 )
+enabled = true
+collision_mask = 2
+
 [node name="Body" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-position = Vector2( 1, 5 )
+position = Vector2( 0.5, 5 )
 shape = SubResource( 2 )
-
-[node name="FloorChecker" type="RayCast2D" parent="."]
-position = Vector2( 0, -9 )
-collision_mask = 2
 
 [node name="HitTimer" type="Timer" parent="."]
 one_shot = true

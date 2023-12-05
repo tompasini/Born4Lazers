@@ -8,10 +8,10 @@ export var direction = 1
 func _ready():
 	if(direction == 1):
 		$AnimatedSprite.flip_h = true
-	$FloorChecker.position.x = ($CollisionShape2D.shape.extents.x) * direction
+	$FloorChecker.position.x = $CollisionShape2D.shape.extents.x * direction
 	
 func _physics_process(delta):
-	if(is_on_wall()):
+	if(is_on_wall() || (!$FloorChecker.is_colliding()) && is_on_floor()):
 		direction *= -1
 		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
 		$FloorChecker.position.x = $CollisionShape2D.shape.extents.x * direction

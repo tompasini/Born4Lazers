@@ -81,4 +81,4 @@ limit_smoothed = true
 smoothing_speed = 12.0
 
 [node name="EnemySpawn" parent="." instance=ExtResource( 4 )]
-position = Vector2( 144, 548 )
+position = Vector2( 562, 435 )
