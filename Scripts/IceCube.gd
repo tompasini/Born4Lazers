@@ -26,15 +26,6 @@ func _physics_process(delta):
 func _on_Body_body_entered(body):
 	if(body.name == "LZer"):
 		body.hurt()
-	elif(body.name == 'Laser'):
-		if(life):
-			$AnimatedSprite.play('hit')
-			body.queue_free()
-			life -= GlobalVariables.laser_damage
-			$HitTimer.start()
-		if(!life):
-			remove_collisions()	
-			queue_free()
 
 func remove_collisions():
 	set_collision_mask_bit(1, false)
@@ -44,3 +35,14 @@ func remove_collisions():
 
 func _on_HitTimer_timeout():
 	$AnimatedSprite.play("idle")
+
+func _on_Body_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	if(body.name == 'Laser'):
+		body.queue_free()
+		if(life):
+			$AnimatedSprite.play('hit')
+			life -= GlobalVariables.laser_damage
+			$HitTimer.start()
+		if(!life):
+			remove_collisions()	
+			queue_free()
