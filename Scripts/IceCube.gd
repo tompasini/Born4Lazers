@@ -1,11 +1,9 @@
-extends KinematicBody2D
-
-var velocity = Vector2(0,0)
-var life = 30
-var speed = 200
-export var direction = 1
+extends Enemy
 
 func _ready():
+	life = 30
+	speed = 200
+	hit_animation = 'hit'
 	if(direction == 1):
 		$AnimatedSprite.flip_h = true
 	$FloorChecker.position.x = $CollisionShape2D.shape.extents.x * direction
@@ -38,11 +36,8 @@ func _on_HitTimer_timeout():
 
 func _on_Body_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if(body.name == 'Laser'):
-		body.queue_free()
-		if(life):
-			$AnimatedSprite.play('hit')
-			life -= GlobalVariables.laser_damage
-			$HitTimer.start()
-		if(!life):
-			remove_collisions()	
-			queue_free()
+		$HitTimer.start()
+		hit_by_laser(body)
+		
+func die():
+	queue_free()

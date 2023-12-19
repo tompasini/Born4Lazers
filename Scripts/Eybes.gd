@@ -1,12 +1,10 @@
-extends KinematicBody2D
-
-var velocity = Vector2()
-export var direction = -1
-export var detects_cliffs = true
-var speed = 50
-var life = 10
+extends Enemy
 
 func _ready():
+	speed = 50
+	life = 10
+	hit_animation = 'hit'
+	death_animation = 'fall'
 	if(direction == 1):
 		$AnimatedSprite.flip_h = true
 	$FloorChecker.position.x = $CollisionShape2D.shape.get_radius() * direction
@@ -17,7 +15,6 @@ func  _physics_process(delta):
 		direction *= -1
 		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
 		$FloorChecker.position.x = $CollisionShape2D.shape.get_radius() * direction
-	
 	velocity.y += 20
 	
 	velocity.x = speed * direction
@@ -56,14 +53,5 @@ func remove_collisions():
 	$Sides.set_collision_layer_bit(4, false)
 	$Sides.set_collision_mask_bit(0, false)
 
-
-func hit_by_laser(body):
-	if(life):
-		$AnimatedSprite.play('hit')
-		body.queue_free()
-		life -= GlobalVariables.laser_damage
-	if(!life):
-		remove_collisions()	
-		$AnimatedSprite.play('fall')
-		speed = 0		
-		$Timer.start()
+func die():
+	$Timer.start()
