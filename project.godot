@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Scripts/Base/Enemy.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Laser",
+"language": "GDScript",
+"path": "res://Scripts/Base/Laser.gd"
 } ]
 _global_script_class_icons={
-"Enemy": ""
+"Enemy": "",
+"Laser": ""
 }
 
 [application]

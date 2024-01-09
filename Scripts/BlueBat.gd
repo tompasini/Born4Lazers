@@ -25,8 +25,8 @@ func _on_HitTimer_timeout():
 
 func shoot():
 	var l = LASER.instance()
-	l.direction = direction
 	get_parent().add_child(l)
+	l.direction = direction
 	l.position.y = position.y - 7
 	l.position.x = position.x + 18
 

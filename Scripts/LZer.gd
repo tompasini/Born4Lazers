@@ -187,11 +187,11 @@ func remove_collisions():
 	
 func create_laser():
 	var l = LASER.instance()
-	if($AnimatedSprite.flip_h || (_state == STATES.ON_WALL_IN_AIR && $RightSide.is_colliding())):
-		l.direction = -1
 	get_parent().add_child(l)
 	l.position.y = position.y - 7
 	l.position.x = position.x + 18
+	if($AnimatedSprite.flip_h || (_state == STATES.ON_WALL_IN_AIR && $RightSide.is_colliding())):
+		l.direction = -1
 
 func increase_health():
 	maxHealth += 5
