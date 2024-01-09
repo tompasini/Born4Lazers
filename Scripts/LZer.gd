@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 var velocity = Vector2(0, 0)
-var damage = 5
 var alive = true
 var finished = false
 var direction = 1
@@ -201,11 +200,11 @@ func increase_health():
 		health += 5
 	
 func increase_damage():
-	damage += 5
+	GlobalVariables.laser_damage += 5
 	
 func increase_speed():
 	if(speed < maxSpeed):
-		speed +=10
+		speed += 10
 
 func increase_jumps():
 	maxJumps += 1

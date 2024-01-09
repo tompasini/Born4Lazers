@@ -1,8 +1,5 @@
-extends Area2D
-
-
+extends PowerUp
 
 func _on_SpeedPowerUp_body_entered(body):
-	if(body.name == "LZer"):
-		body.increase_speed()
+	power_up(body, "increase_speed")
 	queue_free()

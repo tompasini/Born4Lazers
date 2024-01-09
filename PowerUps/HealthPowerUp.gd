@@ -1,6 +1,5 @@
-extends Area2D
+extends PowerUp
 
 func _on_HealthPowerUp_body_entered(body):
-	if(body.name == "LZer"):
-		body.increase_health()
+	power_up(body, "increase_health")
 	queue_free()

@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Laser",
 "language": "GDScript",
 "path": "res://Scripts/Base/Laser.gd"
+}, {
+"base": "Area2D",
+"class": "PowerUp",
+"language": "GDScript",
+"path": "res://Scripts/Base/PowerUp.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
-"Laser": ""
+"Laser": "",
+"PowerUp": ""
 }
 
 [application]

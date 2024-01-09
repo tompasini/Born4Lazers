@@ -1,8 +1,5 @@
-extends Area2D
-
-
+extends PowerUp
 
 func _on_JumpPowerUp_body_entered(body):
-	if(body.name == "LZer"):
-		body.increase_jumps()
+	power_up(body, "increase_jumps")
 	queue_free()
