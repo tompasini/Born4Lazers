@@ -1,15 +1,14 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
+const DIRECTIONS = [-1, 1]
+const ACTIONS = [1, 2]
 var velocity = Vector2(0,0)
 var life = 150
 var eyebes_direction = -1
-var jump_direction = -1
-var dash_direction = 1
-var action = 1
+var jump_direction
+var dash_direction
+var action
 var has_dashed = false
-var level_started = false
 const EYEBES = preload("res://Enemies/Eyebes.tscn")
 const GRAVITY = 35
 
@@ -17,7 +16,11 @@ enum STATES {IDLE, JUMPING, DASHING, DEAD}
 
 var _state = STATES.IDLE
 
-signal transition_world
+func _ready():
+	jump_direction = DIRECTIONS[randi() % DIRECTIONS.size()]
+	dash_direction = DIRECTIONS[randi() % DIRECTIONS.size()]
+	action = ACTIONS[randi() % ACTIONS.size()]
+	$AttackTimer.start()
 
 func _physics_process(delta):
 	if(_state != STATES.DEAD):
@@ -58,7 +61,6 @@ func _on_Body_body_entered(body):
 			_state = STATES.DEAD
 			remove_collisions()
 			$HitAura.visible = false
-			emit_signal("transition_world")
 
 func _on_HitAuraTimer_timeout():
 	$HitAura.visible = false
@@ -76,8 +78,8 @@ func spawn_eyebes():
 	eyebes.position.y = position.y
 
 func jump():
-	velocity.y = -600
-	velocity.x = (650 * jump_direction)
+	velocity.y = -750
+	velocity.x = (750 * jump_direction)
 	if(has_dashed):
 		dash_direction = dash_direction * -1
 	if(dash_direction == 1):
