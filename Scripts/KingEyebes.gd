@@ -17,8 +17,8 @@ enum STATES {IDLE, JUMPING, DASHING, DEAD}
 var _state = STATES.IDLE
 
 func _ready():
-	jump_direction = DIRECTIONS[randi() % DIRECTIONS.size()]
-	dash_direction = DIRECTIONS[randi() % DIRECTIONS.size()]
+	jump_direction = random_direction()
+	dash_direction = random_direction()
 	action = ACTIONS[randi() % ACTIONS.size()]
 	$AttackTimer.start()
 
@@ -44,7 +44,7 @@ func _physics_process(delta):
 	if(_state == STATES.DEAD):
 		$AnimatedSprite.play("dead")
 	velocity = move_and_slide(velocity, Vector2.UP)
-	if(is_on_floor() && _state != STATES.DASHING):
+	if(is_on_wall() && _state != STATES.DASHING):
 		velocity.x = 0
 
 func _on_Body_body_entered(body):
@@ -81,16 +81,19 @@ func jump():
 	velocity.y = -750
 	velocity.x = (750 * jump_direction)
 	if(has_dashed):
-		dash_direction = dash_direction * -1
+		dash_direction = random_direction()
 	if(dash_direction == 1):
-		jump_direction = -1
+		jump_direction = random_direction()
 	else:
-		jump_direction = 1
+		jump_direction = random_direction()
 	action = 2
 
 func dash():
 	velocity.x = (700 * dash_direction)
 	action = 1
+	
+func random_direction():
+	return DIRECTIONS[randi() % DIRECTIONS.size()]
 
 func _on_AttackTimer_timeout():
 	if(_state != STATES.DEAD):
