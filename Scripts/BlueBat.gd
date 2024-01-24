@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 var life = 45
 const LASER = preload("res://Enemies/Lasers/Blue Laser.tscn")

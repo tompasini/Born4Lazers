@@ -71,9 +71,10 @@ position = Vector2( 2200, 116 )
 position = Vector2( 1544, 116 )
 
 [node name="LZer" parent="." instance=ExtResource( 2 )]
-position = Vector2( 52, 568 )
+position = Vector2( 48, 568 )
 
 [node name="Camera2D" type="Camera2D" parent="LZer"]
+visible = false
 current = true
 zoom = Vector2( 0.9, 0.9 )
 limit_left = -1088
@@ -87,7 +88,7 @@ smoothing_speed = 12.0
 position = Vector2( 1136, 297 )
 spawn_grounded = true
 spawn_flyers = true
-boss_spawn_threshold = 5
+boss_spawn_threshold = 10
 
 [node name="BlueBat" parent="." instance=ExtResource( 6 )]
-position = Vector2( 282, 513 )
+position = Vector2( 655, 302 )

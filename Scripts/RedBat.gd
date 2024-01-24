@@ -1,67 +1,39 @@
-extends KinematicBody2D
-
-var velocity = Vector2()
+extends Bat
 
 var player_position = Vector2(0, 0)
 
 var attack_speed = 175
 
-var life = 15
+enum STATES {IDLE, ATTACK}
 
-enum STATES {UP, DOWN, IDLE, ATTACK}
-
-var _state : int = STATES.UP
+var _state : int = STATES.IDLE
 
 func _ready():
-	pass
+	life = 15
+	hit_animation = 'hit'
 
 func _physics_process(delta):
-	if(_state != STATES.ATTACK):
-		bob()
-		move_and_slide(velocity)
-	else:
+	if(_state == STATES.ATTACK):
 		attack(delta)
 		
-	if(position == player_position):
-		_state = STATES.UP
-
-
-func bob():
-	if($Timer.is_stopped()):
-		if(_state == STATES.UP):
-			_state = STATES.DOWN
-		elif(_state == STATES.DOWN):
-			_state = STATES.UP
-		$Timer.start()
-	if(_state == STATES.UP):
-		if(velocity.y > 0):
-			velocity.y = lerp(velocity.y, 0, 1.0)
-		velocity.y -= 0.15
-	elif(_state == STATES.DOWN):
-		if(velocity.y < 0):
-			velocity.y = lerp(velocity.y, 0, 1.0)
-		velocity.y += 0.15
+	if(global_position == player_position):
+		_state = STATES.IDLE
+		randomize_direction()
 
 func attack(delta):
-	position = position.move_toward(player_position, delta * attack_speed)
+	global_position = global_position.move_toward(player_position, delta * attack_speed)
 
 func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	player_position = Vector2(body.global_position.x, body.global_position.y)
 	_state = STATES.ATTACK
-	player_position = Vector2(body.position.x, body.position.y)
 
 
 func _on_Body_body_entered(body):
 	if(body.name == 'LZer'):
 		body.hurt()
 	elif(body.name == 'Laser'):
-		if(life):
-			$AnimatedSprite.play('hit')
-			body.queue_free()
-			life -= GlobalVariables.laser_damage
-			$HitTimer.start()
-		if(!life):
-			remove_collisions()	
-			queue_free()
+		$HitTimer.start()
+		hit_by_laser(body)
 			
 func remove_collisions():
 	set_collision_layer_bit(4, false)

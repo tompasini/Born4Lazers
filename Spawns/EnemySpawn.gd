@@ -20,6 +20,9 @@ func spawn():
 	if(spawns < boss_spawn_threshold):
 		self.add_child_below_node($CollisionShape2D, random_enemy())
 	else:
+		spawns = 0
+		if(boss_spawn_threshold > 0):
+			boss_spawn_threshold -= 1
 		self.add_child_below_node($CollisionShape2D, random_boss())
 	spawns += 1
 	$SpawnTimer.start()
@@ -29,12 +32,6 @@ func random_enemy():
 	if("direction" in enemy):
 		enemy.direction = directions[randi() % directions.size()]
 	return enemy
-	
-func get_grounded():
-	pass
-
-func get_flyer():
-	pass
 
 func random_boss():
 	return load("res://Bosses/" + valid_bosses[randi() % valid_bosses.size()] + ".tscn").instance()
