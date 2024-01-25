@@ -1,19 +1,15 @@
-extends KinematicBody2D
+extends Bat
 
-var life = 45
 const LASER = preload("res://Enemies/Lasers/Blue Laser.tscn")
-export var direction = -1
+
+func _ready():
+	life = 45
+	hit_animation = 'hit'
 
 func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if(body.name == 'Laser'):
-		if(life):
-			$AnimatedSprite.play('hit')
-			body.queue_free()
-			life -= GlobalVariables.laser_damage
-			$HitTimer.start()
-		if(!life):
-			remove_collisions()	
-			queue_free()
+		$HitTimer.start()
+		hit_by_laser(body)
 			
 func remove_collisions():
 	set_collision_mask_bit(1, false)
