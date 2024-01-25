@@ -1,4 +1,4 @@
-extends Bat
+extends Flyer
 
 var player_position = Vector2(0, 0)
 
@@ -9,7 +9,7 @@ enum STATES {IDLE, ATTACK}
 var _state : int = STATES.IDLE
 
 func _ready():
-	life = 15
+	life = 5
 	hit_animation = 'hit'
 
 func _physics_process(delta):
@@ -22,6 +22,9 @@ func _physics_process(delta):
 
 func attack(delta):
 	global_position = global_position.move_toward(player_position, delta * attack_speed)
+	
+func die():
+	queue_free()
 
 func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	player_position = Vector2(body.global_position.x, body.global_position.y)

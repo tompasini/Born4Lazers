@@ -1,9 +1,9 @@
-extends Bat
+extends Flyer
 
 const LASER = preload("res://Enemies/Lasers/Blue Laser.tscn")
 
 func _ready():
-	life = 45
+	life = 5
 	hit_animation = 'hit'
 
 func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
@@ -29,3 +29,6 @@ func shoot():
 
 func _on_LaserTimer_timeout():
 	shoot()
+
+func die():
+	queue_free()

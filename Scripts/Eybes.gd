@@ -2,7 +2,7 @@ extends Enemy
 
 func _ready():
 	speed = 50
-	life = 10
+	life = 5
 	hit_animation = 'hit'
 	death_animation = 'fall'
 	if(direction == 1):

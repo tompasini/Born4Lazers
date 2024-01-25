@@ -30,7 +30,7 @@ extents = Vector2( 8, 8 )
 extents = Vector2( 8, 8 )
 
 [node name="BlueBat" type="KinematicBody2D"]
-collision_layer = 0
+collision_layer = 512
 collision_mask = 2
 script = ExtResource( 2 )
 
@@ -45,7 +45,7 @@ visible = false
 shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 256
+collision_layer = 768
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
