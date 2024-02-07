@@ -17,6 +17,8 @@ func _ready():
 	spawn()
 	
 func spawn():
+	$AnimatedSprite.visible = true
+	$AnimatedSprite.play("spawning")
 	if(spawns < boss_spawn_threshold):
 		self.add_child_below_node($CollisionShape2D, random_enemy())
 	else:
@@ -37,14 +39,17 @@ func random_boss():
 	return load("res://Bosses/" + valid_bosses[randi() % valid_bosses.size()] + ".tscn").instance()
 	
 func get_enemies():
-	valid_enemies = ["Eyebes"]
-	valid_bosses = ["KingEyebes"]
-#	if(spawn_grounded):
-#		valid_enemies += GROUND_ENEMIES
-#		valid_bosses += GROUND_BOSSES
-#	if(spawn_flyers):
-#		valid_enemies += FLYING_ENEMIES
-#		valid_bosses += FLYING_BOSSES
+	if(spawn_grounded):
+		valid_enemies += GROUND_ENEMIES
+		valid_bosses += GROUND_BOSSES
+	if(spawn_flyers):
+		valid_enemies += FLYING_ENEMIES
+		valid_bosses += FLYING_BOSSES
 
 func _on_SpawnTimer_timeout():
 	spawn()
+
+
+func _on_AnimatedSprite_animation_finished():
+	$AnimatedSprite.visible = false
+	$AnimatedSprite.stop()
