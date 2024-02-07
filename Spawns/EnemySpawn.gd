@@ -37,12 +37,14 @@ func random_boss():
 	return load("res://Bosses/" + valid_bosses[randi() % valid_bosses.size()] + ".tscn").instance()
 	
 func get_enemies():
-	if(spawn_grounded):
-		valid_enemies += GROUND_ENEMIES
-		valid_bosses += GROUND_BOSSES
-	if(spawn_flyers):
-		valid_enemies += FLYING_ENEMIES
-		valid_bosses += FLYING_BOSSES
+	valid_enemies = ["Eyebes"]
+	valid_bosses = ["KingEyebes"]
+#	if(spawn_grounded):
+#		valid_enemies += GROUND_ENEMIES
+#		valid_bosses += GROUND_BOSSES
+#	if(spawn_flyers):
+#		valid_enemies += FLYING_ENEMIES
+#		valid_bosses += FLYING_BOSSES
 
 func _on_SpawnTimer_timeout():
 	spawn()

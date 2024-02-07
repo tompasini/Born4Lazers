@@ -8,7 +8,7 @@ func _ready():
 		$AnimatedSprite.flip_h = true
 	$FloorChecker.position.x = $CollisionShape2D.shape.extents.x * direction
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(is_on_wall() || (!$FloorChecker.is_colliding()) && is_on_floor()):
 		direction *= -1
 		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
@@ -34,10 +34,10 @@ func remove_collisions():
 func _on_HitTimer_timeout():
 	$AnimatedSprite.play("idle")
 
-func _on_Body_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+func _on_Body_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	if(body.name == 'Laser'):
 		$HitTimer.start()
 		hit_by_laser(body)
 		
 func die():
-	queue_free()
+	call_deferred("queue_free")

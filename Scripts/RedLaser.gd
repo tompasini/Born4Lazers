@@ -6,4 +6,7 @@ func _ready():
 	$Timer.start()	
 
 func _on_Timer_timeout():
-	queue_free()
+	delete()
+
+func delete():
+	call_deferred("queue_free")

@@ -3,10 +3,10 @@ extends Flyer
 const LASER = preload("res://Enemies/Lasers/Blue Laser.tscn")
 
 func _ready():
-	life = 5
+	life = 20
 	hit_animation = 'hit'
 
-func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+func _on_Area2D_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	if(body.name == 'Laser'):
 		$HitTimer.start()
 		hit_by_laser(body)
@@ -23,12 +23,12 @@ func shoot():
 	var l = LASER.instance()
 	get_parent().add_child(l)
 	l.direction = direction
-	l.position.y = position.y - 7
-	l.position.x = position.x + 18
+	l.position.y = position.y - 14
+	l.position.x = position.x + 36
 
 
 func _on_LaserTimer_timeout():
 	shoot()
 
 func die():
-	queue_free()
+	call_deferred("queue_free")

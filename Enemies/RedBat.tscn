@@ -30,7 +30,7 @@ animations = [ {
 radius = 141.032
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 7, 7 )
+extents = Vector2( 12, 12 )
 
 [node name="RedBat" type="KinematicBody2D"]
 collision_layer = 512

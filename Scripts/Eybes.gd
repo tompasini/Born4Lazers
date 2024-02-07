@@ -10,7 +10,7 @@ func _ready():
 	$FloorChecker.position.x = $CollisionShape2D.shape.get_radius() * direction
 	$FloorChecker.enabled = detects_cliffs	
 
-func  _physics_process(delta):
+func  _physics_process(_delta):
 	if(is_on_wall() || (!$FloorChecker.is_colliding() && detects_cliffs && is_on_floor())):
 		direction *= -1
 		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
@@ -39,19 +39,19 @@ func _on_Sides_body_entered(body):
 		hit_by_laser(body)
 
 func _on_Timer_timeout():
-	queue_free()
+	call_deferred("queue_free")
 
 func _on_AnimatedSprite_animation_finished():
 	if($AnimatedSprite.animation == 'hit' && life):
 		$AnimatedSprite.play('walk')
 		
 func remove_collisions():
-	set_collision_layer_bit(4, false)
-	set_collision_mask_bit(0, false)
-	$TopChecker.set_collision_layer_bit(4, false)
-	$TopChecker.set_collision_mask_bit(0, false)
-	$Sides.set_collision_layer_bit(4, false)
-	$Sides.set_collision_mask_bit(0, false)
+	call_deferred('set_collision_layer_bit', 4, false)
+	call_deferred('set_collision_mask_bit', 0, false)	
+	$TopChecker.call_deferred('set_collision_layer_bit', 4, false)
+	$TopChecker.call_deferred('set_collision_mask_bit', 0, false)
+	$Sides.call_deferred('set_collision_layer_bit', 4, false)
+	$Sides.call_deferred('set_collision_mask_bit', 0, false)
 
 func die():
 	$Timer.start()

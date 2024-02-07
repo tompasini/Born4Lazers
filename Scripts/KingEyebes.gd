@@ -22,7 +22,7 @@ func _ready():
 	action = ACTIONS[randi() % ACTIONS.size()]
 	$AttackTimer.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(_state != STATES.DEAD):
 		if(is_on_floor() && velocity.x == 0):
 			_state = STATES.IDLE
@@ -53,7 +53,7 @@ func _on_Body_body_entered(body):
 		body.hurt()
 	elif(body.name == 'Laser'):
 		if(life):
-			spawn_eyebes()			
+			call_deferred('spawn_eyebes')
 			life -= GlobalVariables.laser_damage
 			body.queue_free()
 			$HitAura.visible = true
