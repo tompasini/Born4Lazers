@@ -3,7 +3,7 @@ extends Flyer
 const LASER = preload("res://Enemies/Lasers/Blue Laser.tscn")
 
 func _ready():
-	life = 20
+	life = 80
 	hit_animation = 'hit'
 
 func _on_Area2D_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):

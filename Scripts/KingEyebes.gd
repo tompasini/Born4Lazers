@@ -3,7 +3,7 @@ extends KinematicBody2D
 const DIRECTIONS = [-1, 1]
 const ACTIONS = [1, 2]
 var velocity = Vector2(0,0)
-var life = 150
+var life = 200
 var eyebes_direction = -1
 var jump_direction
 var dash_direction
@@ -52,13 +52,13 @@ func _on_Body_body_entered(body):
 	if(body.name == 'LZer'):
 		body.hurt()
 	elif(body.name == 'Laser'):
-		if(life):
+		if(life >= GlobalVariables.laser_damage):
 			call_deferred('spawn_eyebes')
 			life -= GlobalVariables.laser_damage
 			body.queue_free()
 			$HitAura.visible = true
 			$HitAuraTimer.start()
-		if(!life):
+		if(!life || life <= GlobalVariables.laser_damage):
 			_state = STATES.DEAD
 			remove_collisions()
 			$HitAura.visible = false

@@ -27,6 +27,8 @@ func spawn():
 			boss_spawn_threshold -= 1
 		self.add_child_below_node($CollisionShape2D, random_boss())
 	spawns += 1
+	if($SpawnTimer.wait_time > 5):
+		$SpawnTimer.wait_time -= 1
 	$SpawnTimer.start()
 
 func random_enemy():
@@ -36,7 +38,8 @@ func random_enemy():
 	return enemy
 
 func random_boss():
-	return load("res://Bosses/" + valid_bosses[randi() % valid_bosses.size()] + ".tscn").instance()
+	if(valid_bosses.size() > 0):
+		return load("res://Bosses/" + valid_bosses[randi() % valid_bosses.size()] + ".tscn").instance()
 	
 func get_enemies():
 	if(spawn_grounded):

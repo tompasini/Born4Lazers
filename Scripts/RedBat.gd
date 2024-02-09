@@ -9,7 +9,7 @@ enum STATES {IDLE, ATTACK}
 var _state : int = STATES.IDLE
 
 func _ready():
-	life = 15
+	life = 60
 	hit_animation = 'hit'
 
 func _physics_process(delta):
