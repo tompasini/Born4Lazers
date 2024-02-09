@@ -72,17 +72,6 @@ position = Vector2( 1544, 116 )
 [node name="LZer" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 568 )
 
-[node name="Camera2D" type="Camera2D" parent="LZer"]
-visible = false
-current = true
-zoom = Vector2( 0.9, 0.9 )
-limit_left = -1088
-limit_top = -500
-limit_right = 3000
-limit_bottom = 600
-limit_smoothed = true
-smoothing_speed = 12.0
-
 [node name="EnemySpawn" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1136, 297 )
 spawn_grounded = true

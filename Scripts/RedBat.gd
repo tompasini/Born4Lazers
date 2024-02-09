@@ -46,4 +46,5 @@ func _on_HitTimer_timeout():
 	$AnimatedSprite.play("flap")
 
 func die():
+	GlobalVariables.score += 60
 	call_deferred("queue_free")

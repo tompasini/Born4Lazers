@@ -31,4 +31,5 @@ func _on_LaserTimer_timeout():
 	shoot()
 
 func die():
+	GlobalVariables.score += 80
 	call_deferred("queue_free")

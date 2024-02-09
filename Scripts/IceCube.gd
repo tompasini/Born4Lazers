@@ -40,4 +40,5 @@ func _on_Body_body_shape_entered(_body_rid, body, _body_shape_index, _local_shap
 		hit_by_laser(body)
 		
 func die():
+	GlobalVariables.score += 60
 	call_deferred("queue_free")

@@ -43,6 +43,7 @@ func _physics_process(_delta):
 			$AnimatedSprite.play("dash_left")
 	if(_state == STATES.DEAD):
 		$AnimatedSprite.play("dead")
+		GlobalVariables.score += 200
 		queue_free()
 	velocity = move_and_slide(velocity, Vector2.UP)
 	if(is_on_wall() && _state != STATES.DASHING):

@@ -39,6 +39,7 @@ func _on_Sides_body_entered(body):
 		hit_by_laser(body)
 
 func _on_Timer_timeout():
+	GlobalVariables.score += 10
 	call_deferred("queue_free")
 
 func _on_AnimatedSprite_animation_finished():
